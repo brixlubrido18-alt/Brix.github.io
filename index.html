@@ -2,32 +2,30 @@
 <html lang="en">
 
 <head>
-    <!-- Basic meta -->
+    <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Doe – Front‑End Developer</title>
+    <title>Brix Lubrido – Front‑End Developer</title>
 
     <!-- Google Font (feel free to change) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
 
-    <!-- Font Awesome for icons (socials, skill icons) -->
+    <!-- Font Awesome (free kit – replace “yourkitid” with your own or use the CDN link) -->
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-    <!-- Replace “yourkitid” with a free kit from https://fontawesome.com (or use the CDN link below) -->
-    <!-- If you don’t want to sign‑up, you can use the free CDN version: -->
+    <!-- If you don’t want a kit, uncomment the line below and comment the line above -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
 
-    <!-- Our own stylesheet -->
+    <!-- Page stylesheet -->
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-    <!-- ==== NAVIGATION ==== -->
+    <!-- ==================== NAVIGATION ==================== -->
     <header class="nav">
         <div class="container nav__container">
-            <a href="#" class="nav__logo">John<span>Doe</span></a>
+            <a href="#" class="nav__logo">Brix<span>Lubrido</span></a>
             <nav class="nav__menu">
                 <a href="#hero">Home</a>
                 <a href="#about">About</a>
@@ -39,19 +37,19 @@
         </div>
     </header>
 
-    <!-- ==== HERO ==== -->
+    <!-- ==================== HERO ==================== -->
     <section id="hero" class="hero">
         <div class="container hero__container">
-            <h1>Hello, I’m <span>John Doe</span></h1>
+            <h1>Hello, I’m <span>Brix Lubrido</span></h1>
             <p>Front‑End Engineer & UI/UX Enthusiast</p>
             <a href="#contact" class="btn-primary">Get in Touch</a>
         </div>
     </section>
 
-    <!-- ==== ABOUT ==== -->
+    <!-- ==================== ABOUT ==================== -->
     <section id="about" class="about">
         <div class="container about__container">
-            <img src="assets/profile.jpg" alt="John Doe portrait" class="about__img">
+            <img src="assets/profile.jpg" alt="Brix Lubrido portrait" class="about__img">
             <div class="about__content">
                 <h2>About Me</h2>
                 <p>
@@ -59,17 +57,16 @@
                     responsive web applications using React, Vue and modern CSS. I love turning
                     complex UI challenges into clean, performant code.
                 </p>
-                <a href="assets/JohnDoe_Resume.pdf" class="btn-secondary" download>Download CV</a>
+                <a href="assets/Brix_Lubrido_Resume.pdf" class="btn-secondary" download>Download CV</a>
             </div>
         </div>
     </section>
 
-    <!-- ==== SKILLS ==== -->
+    <!-- ==================== SKILLS ==================== -->
     <section id="skills" class="skills">
         <div class="container">
             <h2>My Skills</h2>
             <div class="skills__grid">
-                <!-- Each skill item: change icon & name as you like -->
                 <div class="skill">
                     <i class="fab fa-html5 skill__icon"></i>
                     <h3>HTML5</h3>
@@ -106,14 +103,14 @@
         </div>
     </section>
 
-    <!-- ==== PROJECTS ==== -->
+    <!-- ==================== PROJECTS ==================== -->
     <section id="projects" class="projects">
         <div class="container">
             <h2>Selected Projects</h2>
             <div class="projects__grid">
-                <!-- Project Card #1 -->
+                <!-- ----- Project Card #1 ----- -->
                 <article class="project-card">
-                    <img src="assets/project-1.png" alt="Project 1 screenshot" loading="lazy">
+                    <img src="assets/project-1.png" alt="Portfolio site screenshot" loading="lazy">
                     <h3>Portfolio Website</h3>
                     <p>A personal portfolio built with HTML, CSS Grid and vanilla JavaScript. Deployed on GitHub Pages.</p>
                     <div class="project-card__links">
@@ -124,9 +121,9 @@
                     </div>
                 </article>
 
-                <!-- Project Card #2 -->
+                <!-- ----- Project Card #2 ----- -->
                 <article class="project-card">
-                    <img src="assets/project-2.png" alt="Project 2 screenshot" loading="lazy">
+                    <img src="assets/project-2.png" alt="Task tracker screenshot" loading="lazy">
                     <h3>Task Tracker (React)</h3>
                     <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB. Features JWT auth and drag‑&‑drop.</p>
                     <div class="project-card__links">
@@ -137,9 +134,9 @@
                     </div>
                 </article>
 
-                <!-- Project Card #3 -->
+                <!-- ----- Project Card #3 ----- -->
                 <article class="project-card">
-                    <img src="assets/project-3.png" alt="Project 3 screenshot" loading="lazy">
+                    <img src="assets/project-3.png" alt="Weather Dashboard screenshot" loading="lazy">
                     <h3>Weather Dashboard</h3>
                     <p>Vue.js single‑page app that consumes OpenWeatherMap API. Shows current weather and 5‑day forecast.</p>
                     <div class="project-card__links">
@@ -149,27 +146,27 @@
                             Live</a>
                     </div>
                 </article>
-                <!-- Add more cards as you wish -->
+                <!-- Add more cards as needed -->
             </div>
         </div>
     </section>
 
-    <!-- ==== CONTACT ==== -->
+    <!-- ==================== CONTACT ==================== -->
     <section id="contact" class="contact">
         <div class="container contact__container">
             <h2>Contact Me</h2>
 
             <div class="contact__grid">
-                <!-- Social / direct contact -->
+                <!-- Direct contact -->
                 <div class="contact__info">
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:john.doe@email.com">john.doe@email.com</a></p>
-                    <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:brix.lubrido@email.com">brix.lubrido@email.com</a></p>
+                    <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/brixlubrido" target="_blank">LinkedIn</a></p>
                     <p><i class="fab fa-github"></i> <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
                     <p><i class="fas fa-phone"></i> +1 234 567 8901</p>
                 </div>
 
                 <!-- Simple contact form (Formspree) -->
-                <form action="https://formspree.io/f/your‑form‑id" method="POST" class="contact__form">
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact__form">
                     <input type="text" name="name" placeholder="Your name" required>
                     <input type="email" name="_replyto" placeholder="Your email" required>
                     <textarea name="message" rows="4" placeholder="Your message…" required></textarea>
@@ -179,19 +176,19 @@
         </div>
     </section>
 
-    <!-- ==== FOOTER ==== -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container footer__container">
-            <p>&copy; <span id="year"></span> John Doe. All rights reserved.</p>
+            <p>&copy; <span id="year"></span> Brix Lubrido. All rights reserved.</p>
             <div class="footer__socials">
                 <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/johndoe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://linkedin.com/in/brixlubrido" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript (only for theme toggle and footer year) -->
+    <!-- JS (theme toggle & footer year) -->
     <script src="script.js"></script>
 </body>
 
