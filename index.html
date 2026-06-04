@@ -11,12 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- ---------- FONT AWESOME ---------- -->
-    <!-- Replace "yourkitid" with a free Font Awesome kit ID, or comment this line
-         and uncomment the CDN line right below it. -->
+    <!-- ---------- FONT AWESOME (replace yourkitid or use CDN) ---------- -->
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+    <!-- If you don’t have a kit, uncomment the line below and delete the script line above -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
 
     <!-- ---------- OUR STYLES ---------- -->
     <link rel="stylesheet" href="style.css">
@@ -50,7 +48,7 @@
     <!-- ==================== ABOUT ==================== -->
     <section id="about" class="about">
         <div class="container about__container">
-            <!-- Portrait – same file used for the hero -->
+            <!-- Circular portrait – same picture used for the hero -->
             <img src="assets/brbbbbb.jpg"
                  alt="Portrait of Brix Lubrido"
                  class="about__img">
@@ -62,38 +60,114 @@
                     responsive web applications using React, Vue and modern CSS. I love turning
                     complex UI challenges into clean, performant code.
                 </p>
-                <!-- If you have a resume PDF, put it in assets/ and update the href -->
                 <a href="assets/Brix_Lubrido_Resume.pdf" class="btn-secondary" download>Download CV</a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== SKILLS ==================== -->
+    <!-- ==================== SKILLS – FLIP CARDS ==================== -->
     <section id="skills" class="skills">
         <div class="container">
-            <div class="skills__inner">
-                <!-- LEFT: the list of skill icons -->
-                <div class="skills__content">
-                    <h2>My Skills</h2>
-                    <div class="skills__grid">
-                        <div class="skill"><i class="fab fa-html5 skill__icon"></i><h3>HTML5</h3></div>
-                        <div class="skill"><i class="fab fa-css3-alt skill__icon"></i><h3>CSS3 / Sass</h3></div>
-                        <div class="skill"><i class="fab fa-js-square skill__icon"></i><h3>JavaScript</h3></div>
-                        <div class="skill"><i class="fab fa-react skill__icon"></i><h3>React</h3></div>
-                        <div class="skill"><i class="fab fa-vuejs skill__icon"></i><h3>Vue</h3></div>
-                        <div class="skill"><i class="fas fa-git-alt skill__icon"></i><h3>Git</h3></div>
-                        <div class="skill"><i class="fas fa-database skill__icon"></i><h3>REST APIs</h3></div>
-                        <div class="skill"><i class="fas fa-mobile-alt skill__icon"></i><h3>Responsive Design</h3></div>
+            <h2>My Skills</h2>
+
+            <div class="skills__grid">
+                <!-- ---------- HTML5 ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/Y_L4-x48DdnlOBQmo46tlkNgDPkDBQbbulPysBqNdpw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bG9nby53aW5lL2Ev/bG9nby9Bc2FuYV8o/c29mdHdhcmUpL0Fz/YW5hXyhzb2Z0d2Fy/ZSktTG9nby53aW5l/LnN2Zw"
+                                 alt="HTML5"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Asana</p></div>
                     </div>
                 </div>
 
-                <!-- RIGHT: the illustration you uploaded -->
-                <div class="skills__image">
-                    <!-- (← change extension if your file is .jpg or .webp) -->
-                    <img src="assets/skills.png" alt="Illustration of my skill set">
+                <!-- ---------- CSS3 / Sass ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/KY7ribkEjpa83gn0XJishKo4NWKRLwuCQJhlW1qJ-H8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5kZXNpZ25ydXNo/LmNvbS9pbnNwaXJh/dGlvbl9pbWFnZXMv/MzQzMDUwL2NvbnZl/cnNpb25zL3NsYWNr/X2xvZ29fNGZhNjA4/MDUxMDQ3LWRlc2t0/b3AuanBn"
+                                 alt="CSS3 / Sass"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Slack</p></div>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <!-- ---------- JavaScript ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/zmsrDEooMg_G7LJzWas-_1EoO2Jd8nhLImt7quoVpwc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FlL2I0/LzMwL2FlYjQzMDhl/NjI5YTFmMmRmZjUy/ZmNlZjMzZmU3ZjIy/LmpwZw"
+                                 alt="JavaScript"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Workspace (Spreadsheet, Apps Script, Slides, Docs)</p></div>
+                    </div>
+                </div>
+
+                <!-- ---------- React ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/K4fOHRw1htCACOELgL-OhbPvx6bvLacN33YpbhBmQ5Q/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzM4LzIvbWljcm9z/b2Z0LW9mZmljZS0z/NjUtbG9nby1wbmdf/c2Vla2xvZ28tMzgw/NTE1LnBuZw"
+                                 alt="React"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Microsoft Office 365</p></div>
+                    </div>
+                </div>
+
+                <!-- ---------- Vue ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw"
+                                 alt="Vue"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Salesforce CRM</p></div>
+                    </div>
+                </div>
+
+                <!-- ---------- Git ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/X6Kw4n9QAGjUQEjfq6V64IObLsDYM_Po0Fh0c9dPHtM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvNTAwcC8y/OS82Mi9hLWNhcnRv/b24tbGxhbWEtd2Vh/cmluZy1zdW5nbGFz/c2VzLWFuZC10aWUt/dmVjdG9yLTYyNTIy/OTYyLmpwZw"
+                                 alt="Git"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Ollama AI</p></div>
+                    </div>
+                </div>
+
+                <!-- ---------- REST APIs ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw"
+                                 alt="REST APIs"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of REST APIs (custom text here)</p></div>
+                    </div>
+                </div>
+
+                <!-- ---------- Responsive Design ---------- -->
+                <div class="skill-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw"
+                                 alt="Responsive Design"
+                                 class="skill-img">
+                        </div>
+                        <div class="card-back"><p>description of Responsive Design</p></div>
+                    </div>
+                </div>
+            </div> <!-- /.skills__grid -->
+        </div> <!-- /.container -->
     </section>
 
     <!-- ==================== PROJECTS ==================== -->
@@ -175,7 +249,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript (dark‑mode toggle + footer year) -->
+    <!-- ---------------------------------------------------------
+         JavaScript (dark‑mode toggle, year, flip‑card handling)
+    ---------------------------------------------------------- -->
     <script src="script.js"></script>
 </body>
 </html>
