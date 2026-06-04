@@ -1,1 +1,369 @@
+/* ==========================
+   VARIABLES (light & dark)
+   ========================== */
+:root {
+    /* Light theme */
+    --bg: #fdfdfd;
+    --text: #111;
+    --primary: #0366d6;
+    --secondary: #6c757d;
+    --accent: #e91e63;
+    --header-bg: rgba(255,255,255,0.9);
+    --card-bg: #fff;
+    --card-border: #e0e0e0;
+}
+
+/* Dark theme overrides – toggled by JS */
+[data-theme="dark"] {
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --primary: #58a6ff;
+    --secondary: #8b949e;
+    --accent: #ff7b72;
+    --header-bg: rgba(13,17,23,0.95);
+    --card-bg: #161b22;
+    --card-border: #30363d;
+}
+
+/* ==========================
+   GLOBAL RESETS & BASE
+   ========================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth; /* smooth anchor scrolling */
+}
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ==========================
+   TYPOGRAPHY
+   ========================== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    line-height: 1.2;
+}
+h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+}
+h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1rem;
+}
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: .5rem;
+}
+p {
+    margin-bottom: 1rem;
+}
+
+/* ==========================
+   CONTAINER
+   ========================== */
+.container {
+    width: min(92%, 1200px);
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+/* ==========================
+   NAVIGATION
+   ========================== */
+.nav {
+    position: sticky;
+    top: 0;
+    background: var(--header-bg);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+.nav__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 0;
+}
+.nav__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+}
+.nav__logo span {
+    color: var(--accent);
+}
+.nav__menu a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: color .2s;
+}
+.nav__menu a:hover {
+    color: var(--primary);
+}
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* ==========================
+   HERO
+   ========================== */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+}
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: .5rem;
+}
+.hero h1 span {
+    color: var(--accent);
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: .75rem 1.5rem;
+    border-radius: .4rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background .2s, color .2s;
+}
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #ff9ab1;
+}
+.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+.btn-secondary:hover {
+    background: #fff;
+    color: var(--primary);
+}
+
+/* ==========================
+   ABOUT
+   ========================== */
+.about {
+    padding: 4rem 0;
+    background: var(--bg);
+}
+.about__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+.about__img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    margin: 0 auto;
+    display: block;
+}
+.about__content h2 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+.about__content p {
+    margin-bottom: 1rem;
+}
+
+/* ==========================
+   SKILLS
+   ========================== */
+.skills {
+    padding: 4rem 0;
+    background: var(--card-bg);
+}
+.skills h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.skills__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+.skill {
+    background: var(--bg);
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,.08);
+    transition: transform .2s;
+}
+.skill:hover {
+    transform: translateY(-5px);
+}
+.skill__icon {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    color: var(--primary);
+}
+
+/* ==========================
+   PROJECTS
+   ========================== */
+.projects {
+    padding: 4rem 0;
+    background: var(--bg);
+}
+.projects h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.projects__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s;
+}
+.project-card:hover {
+    box-shadow: 0 6px 15px rgba(0,0,0,.1);
+}
+.project-card img {
+    width: 100%;
+    object-fit: cover;
+    height: 170px;
+}
+.project-card h3 {
+    padding: .75rem 1rem 0;
+}
+.project-card p {
+    padding: .5rem 1rem;
+    flex-grow: 1;
+}
+.project-card__links {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1rem 1rem;
+}
+.project-card__links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.project-card__links a i {
+    margin-right: .25rem;
+}
+.project-card__links a:hover {
+    color: var(--accent);
+}
+
+/* ==========================
+   CONTACT
+   ========================== */
+.contact {
+    padding: 4rem 0;
+    background: var(--card-bg);
+}
+.contact__container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.contact__info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: .75rem;
+    font-size: 1.1rem;
+}
+.contact__info p i {
+    font-size: 1.2rem;
+    margin-right .5rem;
+    width: 30px;
+    color: var(--primary);
+}
+.contact__form {
+    display: flex;
+    flex-direction: column;
+}
+.contact__form input,
+.contact__form textarea {
+    padding: .75rem;
+    margin-bottom: .75rem;
+    border: 1px solid var(--card-border);
+    border-radius: .4rem;
+    background: var(--bg);
+    color: var(--text);
+}
+.contact__form button {
+    align-self: flex-start;
+}
+
+/* ==========================
+   FOOTER
+   ========================== */
+.footer {
+    background: var(--header-bg);
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: .9rem;
+}
+.footer__socials a {
+    margin: 0 .5rem;
+    color: var(--text);
+    font-size: 1.2rem;
+    transition: color .2s;
+}
+.footer__socials a:hover {
+    color: var(--primary);
+}
+
+/* ==========================
+   RESPONSIVE TWEAKS
+   ========================== */
+@media (min-width: 768px) {
+    .about__container {
+        grid-template-columns: 1fr 1.2fr;
+    }
+    .contact__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 
