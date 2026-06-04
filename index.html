@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ---------- META ---------- -->
+    <!-- ==================== META ==================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brix Lubrido – Front‑End Developer</title>
 
-    <!-- ---------- FONTS ---------- -->
+    <!-- ==================== FONTS ==================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- ---------- FONT AWESOME (replace yourkitid or use CDN) ---------- -->
+    <!-- ==================== FONT AWESOME ==================== -->
+    <!-- Replace “yourkitid” with a free Font Awesome kit ID, or uncomment the CDN line below -->
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-    <!-- If you don’t have a kit, uncomment the line below and delete the script line above -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+    <!-- <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
 
-    <!-- ---------- OUR STYLES ---------- -->
+    <!-- ==================== STYLES ==================== -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,19 +37,45 @@
         </div>
     </header>
 
-    <!-- ==================== HERO ==================== -->
+    <!-- ==================== HERO (video background) ==================== -->
     <section id="hero" class="hero">
+        <!-- Video background – place your video file as assets/hero-bg.mp4 -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/hero-bg.mp4" type="video/mp4">
+            <!-- fallback image if the video fails to load -->
+            <img src="assets/hero-fallback.jpg" alt="Hero fallback image">
+        </video>
+
         <div class="container hero__container">
             <h1>Hello, I’m <span>Brix Lubrido</span></h1>
-            <p>Front‑End Engineer & UI/UX Enthusiast</p>
-            <a href="#contact" class="btn-primary">Get in Touch</a>
+            <!-- Tagline removed as requested -->
+            <button id="cta-btn" class="btn-primary">Get in Touch</button>
         </div>
     </section>
+
+    <!-- ==================== MODAL FORM (triggered by Get in Touch) ==================== -->
+    <div id="cta-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close-modal">&times;</span>
+            <h2>Contact Brix</h2>
+            <form id="cta-form">
+                <label for="cta-email">Your Email Address</label>
+                <input type="email" id="cta-email" name="email"
+                       placeholder="you@example.com" required>
+
+                <label for="cta-message">Message</label>
+                <textarea id="cta-message" name="message" rows="4"
+                          placeholder="Your message…" required></textarea>
+
+                <button type="submit" class="btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
 
     <!-- ==================== ABOUT ==================== -->
     <section id="about" class="about">
         <div class="container about__container">
-            <!-- Circular portrait – same picture used for the hero -->
+            <!-- Portrait – the same picture used for the hero background -->
             <img src="assets/brbbbbb.jpg"
                  alt="Portrait of Brix Lubrido"
                  class="about__img">
@@ -60,7 +87,10 @@
                     responsive web applications using React, Vue and modern CSS. I love turning
                     complex UI challenges into clean, performant code.
                 </p>
-                <a href="assets/Brix_Lubrido_Resume.pdf" class="btn-secondary" download>Download CV</a>
+                <!-- New resume file name -->
+                <a href="assets/Brix%20biodata.pdf"
+                   class="btn-secondary"
+                   download>Download CV</a>
             </div>
         </div>
     </section>
@@ -71,7 +101,7 @@
             <h2>My Skills</h2>
 
             <div class="skills__grid">
-                <!-- ---------- HTML5 ---------- -->
+                <!-- HTML5 -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -83,7 +113,7 @@
                     </div>
                 </div>
 
-                <!-- ---------- CSS3 / Sass ---------- -->
+                <!-- CSS3 / Sass -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -95,7 +125,7 @@
                     </div>
                 </div>
 
-                <!-- ---------- JavaScript ---------- -->
+                <!-- JavaScript -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -107,7 +137,7 @@
                     </div>
                 </div>
 
-                <!-- ---------- React ---------- -->
+                <!-- React -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -115,11 +145,11 @@
                                  alt="React"
                                  class="skill-img">
                         </div>
-                        <div class="card-back"><p>description of Microsoft Office 365</p></div>
+                        <div class="card-back"><p>description of Microsoft Office 365</p></div>
                     </div>
                 </div>
 
-                <!-- ---------- Vue ---------- -->
+                <!-- Vue -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -131,7 +161,7 @@
                     </div>
                 </div>
 
-                <!-- ---------- Git ---------- -->
+                <!-- Git -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -140,30 +170,6 @@
                                  class="skill-img">
                         </div>
                         <div class="card-back"><p>description of Ollama AI</p></div>
-                    </div>
-                </div>
-
-                <!-- ---------- REST APIs ---------- -->
-                <div class="skill-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw"
-                                 alt="REST APIs"
-                                 class="skill-img">
-                        </div>
-                        <div class="card-back"><p>description of REST APIs (custom text here)</p></div>
-                    </div>
-                </div>
-
-                <!-- ---------- Responsive Design ---------- -->
-                <div class="skill-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw"
-                                 alt="Responsive Design"
-                                 class="skill-img">
-                        </div>
-                        <div class="card-back"><p>description of Responsive Design</p></div>
                     </div>
                 </div>
             </div> <!-- /.skills__grid -->
@@ -220,14 +226,14 @@
             <div class="contact__grid">
                 <!-- Direct contact info -->
                 <div class="contact__info">
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:brix.lubrido@email.com">brix.lubrido@email.com</a></p>
-                    <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/brixlubrido" target="_blank">LinkedIn</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:brixlubrido18@gmail.com">brixlubrido18@gmail.com</a></p>
+                    <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/brix-lubrido-999a40400/" target="_blank">LinkedIn</a></p>
                     <p><i class="fab fa-github"></i> <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
-                    <p><i class="fas fa-phone"></i> +1 234 567 8901</p>
+                    <p><i class="fas fa-phone"></i> +639502200708</p>
                 </div>
 
-                <!-- Simple contact form (Formspree – replace YOUR_FORM_ID) -->
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact__form">
+                <!-- Existing contact form (you can keep it or remove it) -->
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="contact__form">
                     <input type="text" name="name" placeholder="Your name" required>
                     <input type="email" name="_replyto" placeholder="Your email" required>
                     <textarea name="message" rows="4" placeholder="Your message…" required></textarea>
@@ -243,15 +249,13 @@
             <p>&copy; <span id="year"></span> Brix Lubrido. All rights reserved.</p>
             <div class="footer__socials">
                 <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/brixlubrido" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/brix-lubrido-999a40400/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- ---------------------------------------------------------
-         JavaScript (dark‑mode toggle, year, flip‑card handling)
-    ---------------------------------------------------------- -->
+    <!-- ==================== SCRIPTS ==================== -->
     <script src="script.js"></script>
 </body>
 </html>
