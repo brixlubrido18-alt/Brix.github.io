@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brix Lubrido – Front‑End Developer</title>
@@ -12,12 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- Font Awesome (free kit – replace “yourkitid” with your own or use the CDN link) -->
+    <!-- Font Awesome (free kit – replace “yourkitid” with your own kit id, or use CDN) -->
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-    <!-- If you don’t want a kit, uncomment the line below and comment the line above -->
+    <!-- If you don’t have a kit, uncomment the CDN line below and delete the line above -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
 
-    <!-- Page stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -49,7 +47,10 @@
     <!-- ==================== ABOUT ==================== -->
     <section id="about" class="about">
         <div class="container about__container">
-            <img src="assets/profile.jpg" alt="Brix Lubrido portrait" class="about__img">
+            <!-- ----  NEW: your portrait (still inside assets/) ---- -->
+            <img src="assets/brbbbbb.jpg"
+                 alt="Portrait of Brix Lubrido"
+                 class="about__img">
             <div class="about__content">
                 <h2>About Me</h2>
                 <p>
@@ -57,6 +58,7 @@
                     responsive web applications using React, Vue and modern CSS. I love turning
                     complex UI challenges into clean, performant code.
                 </p>
+                <!-- If you have a PDF resume, place it in assets/ and update the href accordingly -->
                 <a href="assets/Brix_Lubrido_Resume.pdf" class="btn-secondary" download>Download CV</a>
             </div>
         </div>
@@ -67,38 +69,14 @@
         <div class="container">
             <h2>My Skills</h2>
             <div class="skills__grid">
-                <div class="skill">
-                    <i class="fab fa-html5 skill__icon"></i>
-                    <h3>HTML5</h3>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-css3-alt skill__icon"></i>
-                    <h3>CSS3 / Sass</h3>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-js-square skill__icon"></i>
-                    <h3>JavaScript</h3>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-react skill__icon"></i>
-                    <h3>React</h3>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-vuejs skill__icon"></i>
-                    <h3>Vue</h3>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-git-alt skill__icon"></i>
-                    <h3>Git</h3>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-database skill__icon"></i>
-                    <h3>REST APIs</h3>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-mobile-alt skill__icon"></i>
-                    <h3>Responsive Design</h3>
-                </div>
+                <div class="skill"><i class="fab fa-html5 skill__icon"></i><h3>HTML5</h3></div>
+                <div class="skill"><i class="fab fa-css3-alt skill__icon"></i><h3>CSS3 / Sass</h3></div>
+                <div class="skill"><i class="fab fa-js-square skill__icon"></i><h3>JavaScript</h3></div>
+                <div class="skill"><i class="fab fa-react skill__icon"></i><h3>React</h3></div>
+                <div class="skill"><i class="fab fa-vuejs skill__icon"></i><h3>Vue</h3></div>
+                <div class="skill"><i class="fas fa-git-alt skill__icon"></i><h3>Git</h3></div>
+                <div class="skill"><i class="fas fa-database skill__icon"></i><h3>REST APIs</h3></div>
+                <div class="skill"><i class="fas fa-mobile-alt skill__icon"></i><h3>Responsive Design</h3></div>
             </div>
         </div>
     </section>
@@ -108,45 +86,39 @@
         <div class="container">
             <h2>Selected Projects</h2>
             <div class="projects__grid">
-                <!-- ----- Project Card #1 ----- -->
+                <!-- ----- Project Card #1 (replace placeholders with your own data) ----- -->
                 <article class="project-card">
-                    <img src="assets/project-1.png" alt="Portfolio site screenshot" loading="lazy">
+                    <img src="assets/project-1.png" alt="Project 1 screenshot" loading="lazy">
                     <h3>Portfolio Website</h3>
-                    <p>A personal portfolio built with HTML, CSS Grid and vanilla JavaScript. Deployed on GitHub Pages.</p>
+                    <p>A personal portfolio built with plain HTML/CSS/JS and hosted on GitHub Pages.</p>
                     <div class="project-card__links">
-                        <a href="https://github.com/yourusername/portfolio" target="_blank"><i class="fab fa-github"></i>
-                            Code</a>
-                        <a href="https://yourusername.github.io/portfolio" target="_blank"><i class="fas fa-external-link-alt"></i>
-                            Live</a>
+                        <a href="https://github.com/yourusername/portfolio" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://yourusername.github.io/portfolio" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
                     </div>
                 </article>
 
                 <!-- ----- Project Card #2 ----- -->
                 <article class="project-card">
-                    <img src="assets/project-2.png" alt="Task tracker screenshot" loading="lazy">
+                    <img src="assets/project-2.png" alt="Project 2 screenshot" loading="lazy">
                     <h3>Task Tracker (React)</h3>
-                    <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB. Features JWT auth and drag‑&‑drop.</p>
+                    <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB.</p>
                     <div class="project-card__links">
-                        <a href="https://github.com/yourusername/task-tracker" target="_blank"><i class="fab fa-github"></i>
-                            Code</a>
-                        <a href="https://tasktracker.example.com" target="_blank"><i class="fas fa-external-link-alt"></i>
-                            Live</a>
+                        <a href="https://github.com/yourusername/task-tracker" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://tasktracker.example.com" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
                     </div>
                 </article>
 
                 <!-- ----- Project Card #3 ----- -->
                 <article class="project-card">
-                    <img src="assets/project-3.png" alt="Weather Dashboard screenshot" loading="lazy">
+                    <img src="assets/project-3.png" alt="Project 3 screenshot" loading="lazy">
                     <h3>Weather Dashboard</h3>
-                    <p>Vue.js single‑page app that consumes OpenWeatherMap API. Shows current weather and 5‑day forecast.</p>
+                    <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5‑day forecast.</p>
                     <div class="project-card__links">
-                        <a href="https://github.com/yourusername/weather-dashboard" target="_blank"><i class="fab fa-github"></i>
-                            Code</a>
-                        <a href="https://weather-dashboard.netlify.app" target="_blank"><i class="fas fa-external-link-alt"></i>
-                            Live</a>
+                        <a href="https://github.com/yourusername/weather-dashboard" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://weather-dashboard.netlify.app" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
                     </div>
                 </article>
-                <!-- Add more cards as needed -->
+                <!-- Add more cards as you wish -->
             </div>
         </div>
     </section>
@@ -157,7 +129,7 @@
             <h2>Contact Me</h2>
 
             <div class="contact__grid">
-                <!-- Direct contact -->
+                <!-- Direct contact information -->
                 <div class="contact__info">
                     <p><i class="fas fa-envelope"></i> <a href="mailto:brix.lubrido@email.com">brix.lubrido@email.com</a></p>
                     <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/brixlubrido" target="_blank">LinkedIn</a></p>
@@ -165,8 +137,8 @@
                     <p><i class="fas fa-phone"></i> +1 234 567 8901</p>
                 </div>
 
-                <!-- Simple contact form (Formspree) -->
-                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact__form">
+                <!-- Simple contact form (Formspree – replace YOUR_FORM_ID) -->
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact__form">
                     <input type="text" name="name" placeholder="Your name" required>
                     <input type="email" name="_replyto" placeholder="Your email" required>
                     <textarea name="message" rows="4" placeholder="Your message…" required></textarea>
@@ -188,7 +160,7 @@
         </div>
     </footer>
 
-    <!-- JS (theme toggle & footer year) -->
+    <!-- JavaScript (dark‑mode toggle and year) -->
     <script src="script.js"></script>
 </body>
 
