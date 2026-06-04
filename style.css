@@ -121,17 +121,27 @@ p {
 }
 
 /* ==========================
-   HERO
+   HERO – **new background with your picture**
    ========================== */
 .hero {
+    /* 1️⃣ Put your picture (e.g. assets/hero-bg.jpg) into the repo.
+       2️⃣ The CSS below layers a dark gradient over the image so the white text stays readable. */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url('assets/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    color: #fff;
+    color: #fff;                 /* white text works over the dark overlay */
 }
+
+/* keep the rest of the hero styling unchanged */
 .hero h1 {
     font-size: clamp(2.5rem, 8vw, 4rem);
     margin-bottom: .5rem;
@@ -366,4 +376,3 @@ p {
         grid-template-columns: 1fr 1fr;
     }
 }
-
