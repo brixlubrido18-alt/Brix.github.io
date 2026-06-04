@@ -1,6 +1,6 @@
-/* ==========================
-   VARIABLES (light & dark)
-   ========================== */
+/* ==============================================================
+   1️⃣  CSS VARIABLES (light & dark)
+   ============================================================== */
 :root {
     /* Light theme */
     --bg: #fdfdfd;
@@ -13,7 +13,7 @@
     --card-border: #e0e0e0;
 }
 
-/* Dark theme overrides – toggled by JS */
+/* Dark theme – toggled by script.js */
 [data-theme="dark"] {
     --bg: #0d1117;
     --text: #c9d1d9;
@@ -25,10 +25,12 @@
     --card-border: #30363d;
 }
 
-/* ==========================
-   GLOBAL RESETS & BASE
-   ========================== */
-*, *::before, *::after {
+/* ==============================================================
+   2️⃣  GLOBAL RESETS & BASE
+   ============================================================== */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -42,27 +44,27 @@ body {
     min-height: 100vh;
 }
 
-/* ==========================
-   TYPOGRAPHY
-   ========================== */
+/* ==============================================================
+   3️⃣  TYPOGRAPHY
+   ============================================================== */
 h1, h2, h3, h4, h5, h6 { color: var(--text); line-height: 1.2; }
 h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
 h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: 1rem; }
 h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .5rem; }
 p { margin-bottom: 1rem; }
 
-/* ==========================
-   CONTAINER
-   ========================== */
+/* ==============================================================
+   4️⃣  CONTAINER
+   ============================================================== */
 .container {
     width: min(92%, 1200px);
     margin: 0 auto;
     padding: 1rem 0;
 }
 
-/* ==========================
-   NAVIGATION
-   ========================== */
+/* ==============================================================
+   5️⃣  NAVIGATION
+   ============================================================== */
 .nav {
     position: sticky;
     top: 0;
@@ -99,14 +101,14 @@ p { margin-bottom: 1rem; }
     cursor: pointer;
 }
 
-/* ==========================
-   HERO – now using assets/brbbbbb.jpg
-   ========================== */
+/* ==============================================================
+   6️⃣  HERO (uses assets/brbbbbb.jpg)
+   ============================================================== */
 .hero {
-    /* 1️⃣ dark gradient overlay + your picture from assets/ */
+    /* Dark overlay + your picture */
     background-image:
         linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('assets/brbbbbb.jpg');          /* <‑‑ THIS LINE */
+        url('assets/brbbbbb.jpg');   /* ← change if you rename the file */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -116,7 +118,7 @@ p { margin-bottom: 1rem; }
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;                 /* white text over the dark overlay */
+    color: #fff;                     /* white text over the dark overlay */
 }
 .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: .5rem; }
 .hero h1 span { color: var(--accent); }
@@ -140,9 +142,9 @@ p { margin-bottom: 1rem; }
 }
 .btn-secondary:hover { background: #fff; color: var(--primary); }
 
-/* ==========================
-   ABOUT
-   ========================== */
+/* ==============================================================
+   7️⃣  ABOUT (portrait image)
+   ============================================================== */
 .about {
     padding: 4rem 0;
     background: var(--bg);
@@ -165,14 +167,61 @@ p { margin-bottom: 1rem; }
 .about__content h2 { font-size: 2rem; margin-bottom: .5rem; }
 .about__content p { margin-bottom: 1rem; }
 
-/* ==========================
-   SKILLS
-   ========================== */
+/* ==============================================================
+   8️⃣  SKILLS – NEW LAYOUT WITH SIDE‑BY‑SIDE IMAGE
+   ============================================================== */
 .skills {
     padding: 4rem 0;
     background: var(--card-bg);
 }
 .skills h2 { text-align: center; margin-bottom: 2rem; }
+
+/* Wrapper that becomes columns on desktop */
+.skills__inner {
+    display: flex;
+    flex-direction: column;        /* stacked on mobile */
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Left side – the grid of icons */
+.skills__content { width: 100%; }
+
+/* Right side – the illustration */
+.skills__image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: .5rem;
+    /* optional shadow – uncomment if you want it */
+    /* box-shadow: 0 4px 12px rgba(0,0,0,.1); */
+}
+
+/* Desktop layout – side‑by‑side */
+@media (min-width: 768px) {
+    .skills__inner {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .skills__content {
+        flex: 2;                /* roughly 2/3 of the width */
+        max-width: none;
+    }
+    .skills__image {
+        flex: 1;                /* roughly 1/3 of the width */
+        display: flex;
+        justify-content: flex-end;
+    }
+    .skills__image img {
+        max-width: 300px;        /* adjust to your taste */
+    }
+}
+
+/* Optional: hide illustration on very small phones */
+@media (max-width: 480px) {
+    .skills__image { display: none; }
+}
+
+/* Grid of skill icons (unchanged from earlier version) */
 .skills__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -193,9 +242,9 @@ p { margin-bottom: 1rem; }
     color: var(--primary);
 }
 
-/* ==========================
-   PROJECTS
-   ========================== */
+/* ==============================================================
+   9️⃣  PROJECTS
+   ============================================================== */
 .projects {
     padding: 4rem 0;
     background: var(--bg);
@@ -238,9 +287,9 @@ p { margin-bottom: 1rem; }
 .project-card__links a i { margin-right: .25rem; }
 .project-card__links a:hover { color: var(--accent); }
 
-/* ==========================
-   CONTACT
-   ========================== */
+/* ==============================================================
+   🔟  CONTACT
+   ============================================================== */
 .contact {
     padding: 4rem 0;
     background: var(--card-bg);
@@ -278,9 +327,9 @@ p { margin-bottom: 1rem; }
 }
 .contact__form button { align-self: flex-start; }
 
-/* ==========================
-   FOOTER
-   ========================== */
+/* ==============================================================
+   1️⃣1️⃣  FOOTER
+   ============================================================== */
 .footer {
     background: var(--header-bg);
     padding: 1.5rem 0;
@@ -295,9 +344,9 @@ p { margin-bottom: 1rem; }
 }
 .footer__socials a:hover { color: var(--primary); }
 
-/* ==========================
-   RESPONSIVE TWEAKS
-   ========================== */
+/* ==============================================================
+   1️⃣2️⃣  RESPONSIVE ADJUSTMENTS
+   ============================================================== */
 @media (min-width: 768px) {
     .about__container { grid-template-columns: 1fr 1.2fr; }
     .contact__grid { grid-template-columns: 1fr 1fr; }
