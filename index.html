@@ -1,26 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Website</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: gray;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: sans-serif;
-    }
 
-    h1 {
-      color: white;
-    }
-  </style>
+<head>
+    <!-- Basic meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe – Front‑End Developer</title>
+
+    <!-- Google Font (feel free to change) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for icons (socials, skill icons) -->
+    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+    <!-- Replace “yourkitid” with a free kit from https://fontawesome.com (or use the CDN link below) -->
+    <!-- If you don’t want to sign‑up, you can use the free CDN version: -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+
+    <!-- Our own stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <h1>Hello World</h1>
+    <!-- ==== NAVIGATION ==== -->
+    <header class="nav">
+        <div class="container nav__container">
+            <a href="#" class="nav__logo">John<span>Doe</span></a>
+            <nav class="nav__menu">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <!-- ==== HERO ==== -->
+    <section id="hero" class="hero">
+        <div class="container hero__container">
+            <h1>Hello, I’m <span>John Doe</span></h1>
+            <p>Front‑End Engineer & UI/UX Enthusiast</p>
+            <a href="#contact" class="btn-primary">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- ==== ABOUT ==== -->
+    <section id="about" class="about">
+        <div class="container about__container">
+            <img src="assets/profile.jpg" alt="John Doe portrait" class="about__img">
+            <div class="about__content">
+                <h2>About Me</h2>
+                <p>
+                    I’m a passionate front‑end developer with 3+ years of experience building
+                    responsive web applications using React, Vue and modern CSS. I love turning
+                    complex UI challenges into clean, performant code.
+                </p>
+                <a href="assets/JohnDoe_Resume.pdf" class="btn-secondary" download>Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== SKILLS ==== -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills__grid">
+                <!-- Each skill item: change icon & name as you like -->
+                <div class="skill">
+                    <i class="fab fa-html5 skill__icon"></i>
+                    <h3>HTML5</h3>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt skill__icon"></i>
+                    <h3>CSS3 / Sass</h3>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js-square skill__icon"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-react skill__icon"></i>
+                    <h3>React</h3>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-vuejs skill__icon"></i>
+                    <h3>Vue</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-git-alt skill__icon"></i>
+                    <h3>Git</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-database skill__icon"></i>
+                    <h3>REST APIs</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-mobile-alt skill__icon"></i>
+                    <h3>Responsive Design</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== PROJECTS ==== -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Selected Projects</h2>
+            <div class="projects__grid">
+                <!-- Project Card #1 -->
+                <article class="project-card">
+                    <img src="assets/project-1.png" alt="Project 1 screenshot" loading="lazy">
+                    <h3>Portfolio Website</h3>
+                    <p>A personal portfolio built with HTML, CSS Grid and vanilla JavaScript. Deployed on GitHub Pages.</p>
+                    <div class="project-card__links">
+                        <a href="https://github.com/yourusername/portfolio" target="_blank"><i class="fab fa-github"></i>
+                            Code</a>
+                        <a href="https://yourusername.github.io/portfolio" target="_blank"><i class="fas fa-external-link-alt"></i>
+                            Live</a>
+                    </div>
+                </article>
+
+                <!-- Project Card #2 -->
+                <article class="project-card">
+                    <img src="assets/project-2.png" alt="Project 2 screenshot" loading="lazy">
+                    <h3>Task Tracker (React)</h3>
+                    <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB. Features JWT auth and drag‑&‑drop.</p>
+                    <div class="project-card__links">
+                        <a href="https://github.com/yourusername/task-tracker" target="_blank"><i class="fab fa-github"></i>
+                            Code</a>
+                        <a href="https://tasktracker.example.com" target="_blank"><i class="fas fa-external-link-alt"></i>
+                            Live</a>
+                    </div>
+                </article>
+
+                <!-- Project Card #3 -->
+                <article class="project-card">
+                    <img src="assets/project-3.png" alt="Project 3 screenshot" loading="lazy">
+                    <h3>Weather Dashboard</h3>
+                    <p>Vue.js single‑page app that consumes OpenWeatherMap API. Shows current weather and 5‑day forecast.</p>
+                    <div class="project-card__links">
+                        <a href="https://github.com/yourusername/weather-dashboard" target="_blank"><i class="fab fa-github"></i>
+                            Code</a>
+                        <a href="https://weather-dashboard.netlify.app" target="_blank"><i class="fas fa-external-link-alt"></i>
+                            Live</a>
+                    </div>
+                </article>
+                <!-- Add more cards as you wish -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== CONTACT ==== -->
+    <section id="contact" class="contact">
+        <div class="container contact__container">
+            <h2>Contact Me</h2>
+
+            <div class="contact__grid">
+                <!-- Social / direct contact -->
+                <div class="contact__info">
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:john.doe@email.com">john.doe@email.com</a></p>
+                    <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn</a></p>
+                    <p><i class="fab fa-github"></i> <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 8901</p>
+                </div>
+
+                <!-- Simple contact form (Formspree) -->
+                <form action="https://formspree.io/f/your‑form‑id" method="POST" class="contact__form">
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="_replyto" placeholder="Your email" required>
+                    <textarea name="message" rows="4" placeholder="Your message…" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== FOOTER ==== -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>&copy; <span id="year"></span> John Doe. All rights reserved.</p>
+            <div class="footer__socials">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/johndoe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript (only for theme toggle and footer year) -->
+    <script src="script.js"></script>
 </body>
+
 </html>
