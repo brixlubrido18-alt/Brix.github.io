@@ -13,7 +13,7 @@
     --card-border: #e0e0e0;
 }
 
-/* Dark theme – toggled by script.js */
+/* Dark theme overrides – toggled by script.js */
 [data-theme="dark"] {
     --bg: #0d1117;
     --text: #c9d1d9;
@@ -105,10 +105,9 @@ p { margin-bottom: 1rem; }
    6️⃣  HERO (uses assets/brbbbbb.jpg)
    ============================================================== */
 .hero {
-    /* Dark overlay + your picture */
     background-image:
         linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('assets/brbbbbb.jpg');   /* ← change if you rename the file */
+        url('assets/brbbbbb.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -118,7 +117,7 @@ p { margin-bottom: 1rem; }
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;                     /* white text over the dark overlay */
+    color: #fff;
 }
 .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: .5rem; }
 .hero h1 span { color: var(--accent); }
@@ -143,7 +142,7 @@ p { margin-bottom: 1rem; }
 .btn-secondary:hover { background: #fff; color: var(--primary); }
 
 /* ==============================================================
-   7️⃣  ABOUT (portrait image)
+   7️⃣  ABOUT
    ============================================================== */
 .about {
     padding: 4rem 0;
@@ -168,7 +167,7 @@ p { margin-bottom: 1rem; }
 .about__content p { margin-bottom: 1rem; }
 
 /* ==============================================================
-   8️⃣  SKILLS – NEW LAYOUT WITH SIDE‑BY‑SIDE IMAGE
+   8️⃣  SKILLS – FLIP CARD GRID
    ============================================================== */
 .skills {
     padding: 4rem 0;
@@ -176,70 +175,66 @@ p { margin-bottom: 1rem; }
 }
 .skills h2 { text-align: center; margin-bottom: 2rem; }
 
-/* Wrapper that becomes columns on desktop */
-.skills__inner {
-    display: flex;
-    flex-direction: column;        /* stacked on mobile */
-    align-items: center;
-    gap: 2rem;
-}
-
-/* Left side – the grid of icons */
-.skills__content { width: 100%; }
-
-/* Right side – the illustration */
-.skills__image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: .5rem;
-    /* optional shadow – uncomment if you want it */
-    /* box-shadow: 0 4px 12px rgba(0,0,0,.1); */
-}
-
-/* Desktop layout – side‑by‑side */
-@media (min-width: 768px) {
-    .skills__inner {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-    .skills__content {
-        flex: 2;                /* roughly 2/3 of the width */
-        max-width: none;
-    }
-    .skills__image {
-        flex: 1;                /* roughly 1/3 of the width */
-        display: flex;
-        justify-content: flex-end;
-    }
-    .skills__image img {
-        max-width: 300px;        /* adjust to your taste */
-    }
-}
-
-/* Optional: hide illustration on very small phones */
-@media (max-width: 480px) {
-    .skills__image { display: none; }
-}
-
-/* Grid of skill icons (unchanged from earlier version) */
 .skills__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
-    text-align: center;
 }
-.skill {
-    background: var(--bg);
-    padding: 1rem;
+
+/* ----- flip‑card container ----- */
+.skill-card {
+    perspective: 1000px;               /* depth of 3‑D effect */
+}
+
+/* ----- the element that rotates ----- */
+.card-inner {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;                 /* square shape */
+    transform-style: preserve-3d;
+    transition: transform .6s;
+    cursor: pointer;
+}
+
+/* flipped state */
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+/* front & back faces */
+.card-front,
+.card-back {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
     border-radius: .5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,.08);
-    transition: transform .2s;
+    overflow: hidden;
 }
-.skill:hover { transform: translateY(-5px); }
-.skill__icon {
-    font-size: 2rem;
-    margin-bottom: .5rem;
-    color: var(--primary);
+
+/* front – image */
+.card-front {
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-front img.skill-img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* back – description */
+.card-back {
+    background: var(--primary);
+    color: #fff;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    font-size: .9rem;
 }
 
 /* ==============================================================
@@ -345,7 +340,7 @@ p { margin-bottom: 1rem; }
 .footer__socials a:hover { color: var(--primary); }
 
 /* ==============================================================
-   1️⃣2️⃣  RESPONSIVE ADJUSTMENTS
+   1️⃣2️⃣  RESPONSIVE TWEAKS
    ============================================================== */
 @media (min-width: 768px) {
     .about__container { grid-template-columns: 1fr 1.2fr; }
