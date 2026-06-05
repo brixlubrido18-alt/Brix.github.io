@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    /* ── 4. Load saved About content (editable via localStorage) ── */
+    /* ── 4. Load saved About content ─────────────────────────── */
     function loadAboutContent() {
         const p1El = document.getElementById('about-p1');
         const p2El = document.getElementById('about-p2');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loadAboutContent();
 
-    /* ── 5. Contact form flow (with basic validation) ──────── */
+    /* ── 5. Contact form flow (basic validation) ────────────── */
     const ctaBtn  = document.getElementById('cta-btn');
     const ctaForm = document.getElementById('cta-form');
     let pendingName = '';
