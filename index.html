@@ -18,12 +18,16 @@
             <nav class="nav__menu">
                 <a href="#hero">Home</a>
                 <a href="#about">About</a>
+                <a href="#experience">Experience</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </nav>
             <div class="nav__right">
-                <button id="admin-login-btn" class="btn-admin-nav" title="Admin Login"><i class="fas fa-lock"></i></button>
+                <button id="admin-login-btn" class="btn-admin-nav" title="Admin Login">
+                    <i class="fas fa-lock"></i>
+                    <span id="admin-badge"></span>
+                </button>
                 <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-sun"></i></button>
             </div>
         </div>
@@ -43,28 +47,25 @@
         </div>
     </section>
 
-    <!-- CONTACT MODAL -->
+    <!-- ========== CONTACT MODAL ========== -->
     <div id="cta-modal" class="modal hidden">
         <div class="modal-content">
             <span id="close-modal" class="close-modal"><i class="fas fa-times"></i></span>
             <h2>Say Hello 👋</h2>
             <p class="modal-sub">I'll get back to you within 24 hours.</p>
-            <form id="cta-form">
+            <form id="cta-form" novalidate>
                 <label for="cta-name">Your Name</label>
                 <input type="text" id="cta-name" name="name" placeholder="Juan dela Cruz" required>
-
                 <label for="cta-email">Your Email</label>
                 <input type="email" id="cta-email" name="email" placeholder="you@example.com" required>
-
                 <label for="cta-message">Message</label>
                 <textarea id="cta-message" name="message" rows="4" placeholder="What's on your mind?" required></textarea>
-
                 <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
     </div>
 
-    <!-- CONFIRM MODAL -->
+    <!-- ========== CONFIRM MODAL ========== -->
     <div id="confirm-modal" class="modal hidden">
         <div class="modal-content modal-content--sm">
             <h2>Confirm Send</h2>
@@ -76,7 +77,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS MODAL -->
+    <!-- ========== SUCCESS MODAL ========== -->
     <div id="success-modal" class="modal hidden">
         <div class="modal-content modal-content--sm modal-content--center">
             <div class="success-icon"><i class="fas fa-check-circle"></i></div>
@@ -86,34 +87,63 @@
         </div>
     </div>
 
-    <!-- ADMIN LOGIN MODAL -->
+    <!-- ========== ADMIN LOGIN MODAL ========== -->
     <div id="admin-modal" class="modal hidden">
         <div class="modal-content modal-content--sm">
             <span id="close-admin-modal" class="close-modal"><i class="fas fa-times"></i></span>
             <h2><i class="fas fa-shield-alt"></i> Admin Login</h2>
             <p class="modal-sub">Restricted access only.</p>
-            <form id="admin-form">
-                <label for="admin-user">Username</label>
-                <input type="text" id="admin-user" placeholder="Username" autocomplete="off" required>
-                <label for="admin-pass">Password</label>
-                <input type="password" id="admin-pass" placeholder="Password" required>
-                <p id="admin-error" class="admin-error hidden">Invalid credentials. Try again.</p>
-                <button type="submit" class="btn-primary">Login <i class="fas fa-sign-in-alt"></i></button>
-            </form>
+            <div id="admin-error" class="admin-error hidden"><i class="fas fa-exclamation-circle"></i> Invalid credentials. Try again.</div>
+            <label for="admin-user">Username</label>
+            <input type="text" id="admin-user" placeholder="Username" autocomplete="off">
+            <label for="admin-pass">Password</label>
+            <input type="password" id="admin-pass" placeholder="Password">
+            <button id="admin-submit" class="btn-primary" style="width:100%;margin-top:.5rem">Login <i class="fas fa-sign-in-alt"></i></button>
         </div>
     </div>
 
-    <!-- ADMIN DASHBOARD MODAL -->
+    <!-- ========== ADMIN DASHBOARD ========== -->
     <div id="admin-dashboard" class="modal hidden">
         <div class="modal-content modal-content--wide">
             <span id="close-dashboard" class="close-modal"><i class="fas fa-times"></i></span>
             <div class="dashboard-header">
-                <h2><i class="fas fa-bell"></i> Message Inbox</h2>
-                <button id="admin-logout" class="btn-cancel">Logout</button>
+                <h2><i class="fas fa-tachometer-alt"></i> Admin Panel</h2>
+                <button id="admin-logout" class="btn-cancel"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
-            <p class="modal-sub">Messages sent through your portfolio.</p>
-            <div id="messages-list" class="messages-list">
-                <p class="no-messages">No messages yet.</p>
+
+            <!-- TABS -->
+            <div class="dash-tabs">
+                <button class="dash-tab active" data-tab="inbox"><i class="fas fa-inbox"></i> Inbox <span id="inbox-count" class="tab-badge"></span></button>
+                <button class="dash-tab" data-tab="edit-about"><i class="fas fa-edit"></i> Edit About</button>
+                <button class="dash-tab" data-tab="edit-exp"><i class="fas fa-briefcase"></i> Edit Experience</button>
+            </div>
+
+            <!-- INBOX TAB -->
+            <div id="tab-inbox" class="dash-panel">
+                <p class="modal-sub">Messages sent through your portfolio contact form.</p>
+                <div id="messages-list" class="messages-list">
+                    <p class="no-messages">No messages yet.</p>
+                </div>
+            </div>
+
+            <!-- EDIT ABOUT TAB -->
+            <div id="tab-edit-about" class="dash-panel hidden">
+                <p class="modal-sub">Edit the two text blocks displayed in the About section (below the "Human Resources" heading).</p>
+                <label>Paragraph 1 <span style="color:var(--text-muted);font-weight:400;font-size:.8rem">— first block of text</span></label>
+                <textarea id="edit-about-p1" rows="3"></textarea>
+                <label>Paragraph 2 <span style="color:var(--text-muted);font-weight:400;font-size:.8rem">— second block of text</span></label>
+                <textarea id="edit-about-p2" rows="3"></textarea>
+                <button id="save-about" class="btn-primary" style="margin-top:.75rem">Save Changes <i class="fas fa-save"></i></button>
+                <span id="about-saved" class="save-confirm hidden"><i class="fas fa-check"></i> Saved!</span>
+            </div>
+
+            <!-- EDIT EXPERIENCE TAB -->
+            <div id="tab-edit-exp" class="dash-panel hidden">
+                <p class="modal-sub">Edit the Work Experience entries displayed on the page.</p>
+                <div id="exp-editor"></div>
+                <button id="add-exp" class="btn-cancel" style="margin-top:.75rem"><i class="fas fa-plus"></i> Add Entry</button>
+                <button id="save-exp" class="btn-primary" style="margin-top:.75rem;margin-left:.5rem">Save All <i class="fas fa-save"></i></button>
+                <span id="exp-saved" class="save-confirm hidden"><i class="fas fa-check"></i> Saved!</span>
             </div>
         </div>
     </div>
@@ -128,10 +158,19 @@
             <div class="about__content">
                 <p class="section-label">About Me</p>
                 <h2 class="about__heading">Human Resources</h2>
-                <p>A tech-minded professional and automation enthusiast who loves exploring new tools. I combine a foundational background in programming with a passion for process analysis and smart automation.</p>
-                <p>Driven by curiosity, I use AI to accelerate my learning and bring fresh, efficient ideas to life.</p>
+                <p id="about-p1">A tech-minded professional and automation enthusiast who loves exploring new tools. I combine a foundational background in programming with a passion for process analysis and smart automation.</p>
+                <p id="about-p2">Driven by curiosity, I use AI to accelerate my learning and bring fresh, efficient ideas to life.</p>
                 <a href="assets/Brix%20biodata.pdf" class="btn-secondary" download>Download CV <i class="fas fa-download"></i></a>
             </div>
+        </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <p class="section-label">My Journey</p>
+            <h2>Work Experience</h2>
+            <div id="experience-list" class="experience__list"></div>
         </div>
     </section>
 
@@ -241,7 +280,7 @@
                     </div>
                     <div class="project-card__body">
                         <span class="project-tag">Google Apps Script · Google Sheets</span>
-                        <h3>Portfolio Website</h3>
+                        <h3>HR Login Tool</h3>
                         <p>A functional login &amp; logout system connected to a Google Spreadsheet — an HR tool extension built to eliminate unnecessary errors while maintaining full data confidentiality.</p>
                     </div>
                 </article>
