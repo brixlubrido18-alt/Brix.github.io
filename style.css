@@ -2,8 +2,8 @@
    1️⃣  CSS VARIABLES (light & dark)
    ============================================================== */
 :root {
-    /* Light theme – background switched to light gray */
-    --bg: #eaeaea;                /* page background */
+    /* Light theme – page background back to original (very light) */
+    --bg: #fdfdfd;               /* <<< restored to original */
     --text: #111;
     --primary: #0366d6;
     --secondary: #6c757d;
@@ -13,7 +13,7 @@
     --card-border: #e0e0e0;
 }
 
-/* Dark theme overrides – toggled by script.js */
+/* Dark theme (still works via toggle) */
 [data-theme="dark"] {
     --bg: #0d1117;
     --text: #c9d1d9;
@@ -145,24 +145,17 @@ p { margin-bottom: 1rem; }
 .btn-secondary:hover { background: #fff; color: var(--primary); }
 
 /* ==============================================================
-   7️⃣  ABOUT (boxed card)
+   7️⃣  ABOUT (portrait + description stacked)
    ============================================================== */
 .about {
     padding: 4rem 0;
-    /* The page background is gray; give the About section its own white card */
     background: var(--bg);
 }
 .about__container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;   /* always a single column – image then text */
     gap: 2rem;
     align-items: center;
-}
-.about__box {
-    background: var(--card-bg);
-    border-radius: .8rem;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
 .about__img {
     width: 200px;
@@ -291,7 +284,7 @@ p { margin-bottom: 1rem; }
 .project-card__links a:hover { color: var(--accent); }
 
 /* ==============================================================
-   🔟  CONTACT (form removed)
+   🔟  CONTACT (info only – no form)
    ============================================================== */
 .contact {
     padding: 4rem 0;
@@ -383,6 +376,6 @@ p { margin-bottom: 1rem; }
    1️⃣3️⃣  RESPONSIVE TWEAKS
    ============================================================== */
 @media (min-width: 768px) {
-    .about__container { grid-template-columns: 1fr 1.2rem; }
+    /* Removed the two‑column layout for About – keep it stacked */
     .contact__grid { grid-template-columns: 1fr 1fr; }
 }
