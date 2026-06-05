@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ── 8. Admin login ───────────────────────────────────────── */
     const ADMIN_USER = 'brix2016';
     const ADMIN_PASS = 'Hesoyam 123';
-    let adminLoggedIn = true;
+    let adminLoggedIn = false;
 
     const adminNavBtn = document.getElementById('admin-login-btn');
 
