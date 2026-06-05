@@ -91,7 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
     }
-    renderExperienceList();
+    // **NOTE:** We *do not* call renderExperienceList() here because
+    // the experience section is now static HTML.
+    // renderExperienceList();
 
     /* ── 6. Contact form flow ─────────────────────────────────── */
     const ctaBtn      = document.getElementById('cta-btn');
