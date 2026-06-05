@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // First confirmation dialog
+            // Confirmation dialog
             const sure = confirm('Are you sure you want to send this message?');
             if (!sure) return;
 
-            // Submit to Formspree (replace YOUR_FORMSPREE_ID with your actual ID)
+            // Submit to Formspree (replace YOUR_FORMSPREE_ID with the ID you obtain)
             const formData = new FormData(ctaForm);
             try {
                 const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
