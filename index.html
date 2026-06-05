@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <!-- ==================== META ==================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brix Lubrido – Front‑End Developer</title>
 
-    <!-- ==================== FONTS ==================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- ==================== FONT AWESOME ==================== -->
-    <!-- Replace “yourkitid” with a free Font Awesome kit ID, or uncomment the CDN line below -->
-    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
-
-    <!-- ==================== STYLES ==================== -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- ==================== NAVIGATION ==================== -->
+
+    <!-- NAV -->
     <header class="nav">
         <div class="container nav__container">
-            <a href="#" class="nav__logo">Brix<span>Lubrido</span></a>
+            <a href="#" class="nav__logo">Brix<span>.</span></a>
             <nav class="nav__menu">
                 <a href="#hero">Home</a>
                 <a href="#about">About</a>
@@ -33,210 +23,239 @@
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+            <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-sun"></i></button>
         </div>
     </header>
 
-    <!-- ==================== HERO (video background) ==================== -->
+    <!-- HERO -->
     <section id="hero" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="assets/hero-bg.mp4" type="video/mp4">
-            <!-- Fallback image if the video cannot play -->
-            <img src="assets/hero-fallback.jpg" alt="Hero fallback image">
-        </video>
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero__noise"></div>
 
         <div class="container hero__container">
-            <h1>Hello, I’m <span>Brix Lubrido</span></h1>
-            <!-- Tagline removed as requested -->
-            <button id="cta-btn" class="btn-primary">Get in Touch</button>
+            <p class="hero__eyebrow">Front‑End Developer</p>
+            <h1>Hello, I'm<br><span class="hero__name">Brix Lubrido</span></h1>
+            <p class="hero__sub">Building beautiful, performant web experiences — one pixel at a time.</p>
+            <button id="cta-btn" class="btn-primary">Get in Touch <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="hero__scroll-hint">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
         </div>
     </section>
 
-    <!-- ==================== MODAL FORM (triggered by Get in Touch) ==================== -->
+    <!-- MODAL -->
     <div id="cta-modal" class="modal hidden">
         <div class="modal-content">
-            <span id="close-modal" class="close-modal">&times;</span>
-            <h2>Contact Brix</h2>
+            <span id="close-modal" class="close-modal"><i class="fas fa-times"></i></span>
+            <h2>Say Hello 👋</h2>
+            <p class="modal-sub">I'll get back to you within 24 hours.</p>
             <form id="cta-form">
-                <label for="cta-email">Your Email Address</label>
-                <input type="email" id="cta-email" name="email"
-                       placeholder="you@example.com" required>
+                <label for="cta-email">Your Email</label>
+                <input type="email" id="cta-email" name="email" placeholder="you@example.com" required>
 
                 <label for="cta-message">Message</label>
-                <textarea id="cta-message" name="message" rows="4"
-                          placeholder="Your message…" required></textarea>
+                <textarea id="cta-message" name="message" rows="4" placeholder="What's on your mind?" required></textarea>
 
-                <button type="submit" class="btn-primary">Send</button>
+                <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
     </div>
 
-    <!-- ==================== ABOUT (portrait + description below) ==================== -->
+    <!-- ABOUT -->
     <section id="about" class="about">
         <div class="container about__container">
-            <!-- Portrait – appears first -->
-            <img src="assets/brbbbbb.jpg"
-                 alt="Portrait of Brix Lubrido"
-                 class="about__img">
-
-            <!-- Description placed *after* the image -->
+            <div class="about__img-wrap">
+                <img src="assets/brbbbbb.jpg" alt="Portrait of Brix Lubrido" class="about__img">
+                <div class="about__img-ring"></div>
+            </div>
             <div class="about__content">
-                <h2>About Me</h2>
-                <p>
-                    I’m a passionate front‑end developer with 3+ years of experience building
-                    responsive web applications using React, Vue and modern CSS. I love turning
-                    complex UI challenges into clean, performant code.
-                </p>
-                <a href="assets/Brix%20biodata.pdf"
-                   class="btn-secondary"
-                   download>Download CV</a>
+                <p class="section-label">About Me</p>
+                <h2>Crafting interfaces that <em>breathe</em></h2>
+                <p>I'm a passionate front‑end developer with 3+ years of experience building responsive web applications using React, Vue and modern CSS. I love turning complex UI challenges into clean, performant code.</p>
+                <p>When I'm not pushing pixels I'm exploring design systems, contributing to open source, and hunting for the perfect cup of coffee ☕</p>
+                <a href="assets/Brix%20biodata.pdf" class="btn-secondary" download>Download CV <i class="fas fa-download"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== SKILLS – FLIP CARDS ==================== -->
+    <!-- SKILLS -->
     <section id="skills" class="skills">
         <div class="container">
+            <p class="section-label">What I know</p>
             <h2>My Skills</h2>
-
             <div class="skills__grid">
-                <!-- HTML5 -->
+
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="https://imgs.search.brave.com/Y_L4-x48DdnlOBQmo46tlkNgDPkDBQbbulPysBqNdpw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bG9nby53aW5lL2Ev/bG9nby9Bc2FuYV8o/c29mdHdhcmUpL0Fz/YW5hXyhzb2Z0d2Fy/ZSktTG9nby53aW5l/LnN2Zw"
-                                 alt="HTML5"
-                                 class="skill-img">
+                            <img src="https://imgs.search.brave.com/Y_L4-x48DdnlOBQmo46tlkNgDPkDBQbbulPysBqNdpw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bG9nby53aW5lL2Ev/bG9nby9Bc2FuYV8o/c29mdHdhcmUpL0Fz/YW5hXyhzb2Z0d2Fy/ZSktTG9nby53aW5l/LnN2Zw" alt="Asana" class="skill-img">
+                            <span class="card-label">Asana</span>
                         </div>
-                        <div class="card-back"><p>description of Asana</p></div>
+                        <div class="card-back">
+                            <i class="fas fa-tasks card-back-icon"></i>
+                            <p>Project & task management tool for organising workflows and team collaboration.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- CSS3 / Sass -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="https://imgs.search.brave.com/KY7ribkEjpa83gn0XJishKo4NWKRLwuCQJhlW1qJ-H8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5kZXNpZ25ydXNo/LmNvbS9pbnNwaXJh/dGlvbl9pbWFnZXMv/MzQzMDUwL2NvbnZl/cnNpb25zL3NsYWNr/X2xvZ29fNGZhNjA4/MDUxMDQ3LWRlc2t0/b3AuanBn"
-                                 alt="CSS3 / Sass"
-                                 class="skill-img">
+                            <img src="https://imgs.search.brave.com/KY7ribkEjpa83gn0XJishKo4NWKRLwuCQJhlW1qJ-H8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5kZXNpZ25ydXNo/LmNvbS9pbnNwaXJh/dGlvbl9pbWFnZXMv/MzQzMDUwL2NvbnZl/cnNpb25zL3NsYWNr/X2xvZ29fNGZhNjA4/MDUxMDQ3LWRlc2t0/b3AuanBn" alt="Slack" class="skill-img">
+                            <span class="card-label">Slack</span>
                         </div>
-                        <div class="card-back"><p>description of Slack</p></div>
+                        <div class="card-back">
+                            <i class="fas fa-comments card-back-icon"></i>
+                            <p>Real‑time team messaging and communication platform.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- JavaScript -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="https://imgs.search.brave.com/zmsrDEooMg_G7LJzWas-_1EoO2Jd8nhLImt7quoVpwc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FlL2I0/LzMwL2FlYjQzMDhl/NjI5YTFmMmRmZjUy/ZmNlZjMzZmU3ZjIy/LmpwZw"
-                                 alt="JavaScript"
-                                 class="skill-img">
+                            <img src="https://imgs.search.brave.com/zmsrDEooMg_G7LJzWas-_1EoO2Jd8nhLImt7quoVpwc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FlL2I0/LzMwL2FlYjQzMDhl/NjI5YTFmMmRmZjUy/ZmNlZjMzZmU3ZjIy/LmpwZw" alt="Google Workspace" class="skill-img">
+                            <span class="card-label">Workspace</span>
                         </div>
-                        <div class="card-back"><p>description of Workspace (Spreadsheet, Apps Script, Slides, Docs)</p></div>
+                        <div class="card-back">
+                            <i class="fab fa-google card-back-icon"></i>
+                            <p>Spreadsheets, Apps Script, Slides & Docs for productivity.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- React -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="https://imgs.search.brave.com/K4fOHRw1htCACOELgL-OhbPvx6bvLacN33YpbhBmQ5Q/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzM4LzIvbWljcm9z/b2Z0LW9mZmljZS0z/NjUtbG9nby1wbmdf/c2Vla2xvZ28tMzgw/NTE1LnBuZw"
-                                 alt="React"
-                                 class="skill-img">
+                            <img src="https://imgs.search.brave.com/K4fOHRw1htCACOELgL-OhbPvx6bvLacN33YpbhBmQ5Q/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzM4LzIvbWljcm9z/b2Z0LW9mZmljZS0z/NjUtbG9nby1wbmdf/c2Vla2xvZ28tMzgw/NTE1LnBuZw" alt="Microsoft 365" class="skill-img">
+                            <span class="card-label">MS 365</span>
                         </div>
-                        <div class="card-back"><p>description of Microsoft Office 365</p></div>
+                        <div class="card-back">
+                            <i class="fab fa-microsoft card-back-icon"></i>
+                            <p>Full Microsoft Office 365 suite — Word, Excel, PowerPoint and Teams.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Vue -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw"
-                                 alt="Vue"
-                                 class="skill-img">
+                            <img src="https://imgs.search.brave.com/8mSMbC6uCzqfwdhnwhrvSGwnYACg7fc00_FYahFsMDc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bG9nby5kZXYvc2Fs/ZXNmb3JjZS5jb20_/dG9rZW49bGl2ZV82/YTFhMjhmZC02NDIw/LTQ0OTItYWViMC1i/Mjk3NDYxZDlkZTIm/c2l6ZT0xMjgmcmV0/aW5hPXRydWUmZm9y/bWF0PXBuZw" alt="Salesforce" class="skill-img">
+                            <span class="card-label">Salesforce</span>
                         </div>
-                        <div class="card-back"><p>description of Salesforce CRM</p></div>
+                        <div class="card-back">
+                            <i class="fas fa-cloud card-back-icon"></i>
+                            <p>Salesforce CRM for customer relationship management and sales pipelines.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Git -->
                 <div class="skill-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="https://imgs.search.brave.com/X6Kw4n9QAGjUQEjfq6V64IObLsDYM_Po0Fh0c9dPHtM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvNTAwcC8y/OS82Mi9hLWNhcnRv/b24tbGxhbWEtd2Vh/cmluZy1zdW5nbGFz/c2VzLWFuZC10aWUt/dmVjdG9yLTYyNTIy/OTYyLmpwZw"
-                                 alt="Git"
-                                 class="skill-img">
+                            <img src="https://imgs.search.brave.com/X6Kw4n9QAGjUQEjfq6V64IObLsDYM_Po0Fh0c9dPHtM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvNTAwcC8y/OS82Mi9hLWNhcnRv/b24tbGxhbWEtd2Vh/cmluZy1zdW5nbGFz/c2VzLWFuZC10aWUt/dmVjdG9yLTYyNTIy/OTYyLmpwZw" alt="Ollama AI" class="skill-img">
+                            <span class="card-label">Ollama AI</span>
                         </div>
-                        <div class="card-back"><p>description of Ollama AI</p></div>
+                        <div class="card-back">
+                            <i class="fas fa-robot card-back-icon"></i>
+                            <p>Local AI model runner — running LLMs privately on your own hardware.</p>
+                        </div>
                     </div>
                 </div>
-            </div> <!-- /.skills__grid -->
-        </div> <!-- /.container -->
+
+            </div>
+        </div>
     </section>
 
-    <!-- ==================== PROJECTS ==================== -->
+    <!-- PROJECTS -->
     <section id="projects" class="projects">
         <div class="container">
+            <p class="section-label">What I've built</p>
             <h2>Selected Projects</h2>
             <div class="projects__grid">
-                <!-- Project Card #1 -->
+
                 <article class="project-card">
-                    <img src="assets/project-1.png" alt="Project 1 screenshot" loading="lazy">
-                    <h3>Portfolio Website</h3>
-                    <p>A personal portfolio built with plain HTML/CSS/JS and hosted on GitHub Pages.</p>
-                    <div class="project-card__links">
-                        <a href="https://github.com/yourusername/portfolio" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://yourusername.github.io/portfolio" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                    <div class="project-card__img-wrap">
+                        <img src="assets/project-1.png" alt="Project 1" loading="lazy">
+                        <div class="project-card__overlay">
+                            <a href="https://github.com/yourusername/portfolio" target="_blank" class="overlay-btn"><i class="fab fa-github"></i></a>
+                            <a href="https://yourusername.github.io/portfolio" target="_blank" class="overlay-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card__body">
+                        <span class="project-tag">HTML · CSS · JS</span>
+                        <h3>Portfolio Website</h3>
+                        <p>A personal portfolio built with plain HTML/CSS/JS and hosted on GitHub Pages.</p>
                     </div>
                 </article>
 
-                <!-- Project Card #2 -->
                 <article class="project-card">
-                    <img src="assets/project-2.png" alt="Project 2 screenshot" loading="lazy">
-                    <h3>Task Tracker (React)</h3>
-                    <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB.</p>
-                    <div class="project-card__links">
-                        <a href="https://github.com/yourusername/task-tracker" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://tasktracker.example.com" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                    <div class="project-card__img-wrap">
+                        <img src="assets/project-2.png" alt="Project 2" loading="lazy">
+                        <div class="project-card__overlay">
+                            <a href="https://github.com/yourusername/task-tracker" target="_blank" class="overlay-btn"><i class="fab fa-github"></i></a>
+                            <a href="https://tasktracker.example.com" target="_blank" class="overlay-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card__body">
+                        <span class="project-tag">React · Node · MongoDB</span>
+                        <h3>Task Tracker</h3>
+                        <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB.</p>
                     </div>
                 </article>
 
-                <!-- Project Card #3 -->
                 <article class="project-card">
-                    <img src="assets/project-3.png" alt="Project 3 screenshot" loading="lazy">
-                    <h3>Weather Dashboard</h3>
-                    <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5‑day forecast.</p>
-                    <div class="project-card__links">
-                        <a href="https://github.com/yourusername/weather-dashboard" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://weather-dashboard.netlify.app" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                    <div class="project-card__img-wrap">
+                        <img src="assets/project-3.png" alt="Project 3" loading="lazy">
+                        <div class="project-card__overlay">
+                            <a href="https://github.com/yourusername/weather-dashboard" target="_blank" class="overlay-btn"><i class="fab fa-github"></i></a>
+                            <a href="https://weather-dashboard.netlify.app" target="_blank" class="overlay-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card__body">
+                        <span class="project-tag">Vue · OpenWeatherMap API</span>
+                        <h3>Weather Dashboard</h3>
+                        <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5‑day forecast.</p>
                     </div>
                 </article>
-                <!-- Add more cards as you wish -->
+
             </div>
         </div>
     </section>
 
-    <!-- ==================== CONTACT ==================== -->
+    <!-- CONTACT -->
     <section id="contact" class="contact">
         <div class="container contact__container">
+            <p class="section-label">Let's connect</p>
             <h2>Contact Me</h2>
-
-            <div class="contact__grid">
-                <!-- Direct contact info (no form fields) -->
-                <div class="contact__info">
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:brixlubrido18@gmail.com">brixlubrido18@gmail.com</a></p>
-                    <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/brix-lubrido-999a40400/" target="_blank">LinkedIn</a></p>
-                    <p><i class="fab fa-github"></i> <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
-                    <p><i class="fas fa-phone"></i> +639502200708</p>
-                </div>
+            <p class="contact__lead">Have a project in mind or just want to say hi? My inbox is always open.</p>
+            <div class="contact__cards">
+                <a href="mailto:brixlubrido18@gmail.com" class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <span>brixlubrido18@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/brix-lubrido-999a40400/" target="_blank" class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn Profile</span>
+                </a>
+                <a href="https://github.com/yourusername" target="_blank" class="contact-card">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="tel:+639502200708" class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <span>+63 950 220 0708</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer__container">
+            <a href="#" class="nav__logo footer__logo">Brix<span>.</span></a>
             <p>&copy; <span id="year"></span> Brix Lubrido. All rights reserved.</p>
             <div class="footer__socials">
                 <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
@@ -246,7 +265,6 @@
         </div>
     </footer>
 
-    <!-- ==================== SCRIPTS ==================== -->
     <script src="script.js"></script>
 </body>
 </html>
