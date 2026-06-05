@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brix Lubrido – Front‑End Developer</title>
-
+    <title>Brix Lubrido</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,7 +22,10 @@
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-sun"></i></button>
+            <div class="nav__right">
+                <button id="admin-login-btn" class="btn-admin-nav" title="Admin Login"><i class="fas fa-lock"></i></button>
+                <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-sun"></i></button>
+            </div>
         </div>
     </header>
 
@@ -31,27 +33,26 @@
     <section id="hero" class="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero__noise"></div>
-
         <div class="container hero__container">
-            <p class="hero__eyebrow">Front‑End Developer</p>
             <h1>Hello, I'm<br><span class="hero__name">Brix Lubrido</span></h1>
-            <p class="hero__sub">Building beautiful, performant web experiences — one pixel at a time.</p>
+            <p class="hero__sub">maybe i am the person you are looking for ?</p>
             <button id="cta-btn" class="btn-primary">Get in Touch <i class="fas fa-arrow-right"></i></button>
         </div>
-
         <div class="hero__scroll-hint">
-            <span>Scroll</span>
             <div class="hero__scroll-line"></div>
         </div>
     </section>
 
-    <!-- MODAL -->
+    <!-- CONTACT MODAL -->
     <div id="cta-modal" class="modal hidden">
         <div class="modal-content">
             <span id="close-modal" class="close-modal"><i class="fas fa-times"></i></span>
             <h2>Say Hello 👋</h2>
             <p class="modal-sub">I'll get back to you within 24 hours.</p>
             <form id="cta-form">
+                <label for="cta-name">Your Name</label>
+                <input type="text" id="cta-name" name="name" placeholder="Juan dela Cruz" required>
+
                 <label for="cta-email">Your Email</label>
                 <input type="email" id="cta-email" name="email" placeholder="you@example.com" required>
 
@@ -60,6 +61,60 @@
 
                 <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
             </form>
+        </div>
+    </div>
+
+    <!-- CONFIRM MODAL -->
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-content modal-content--sm">
+            <h2>Confirm Send</h2>
+            <p class="modal-sub">Are you sure you want to send this message?</p>
+            <div class="modal-actions">
+                <button id="confirm-yes" class="btn-primary">Yes, Send it!</button>
+                <button id="confirm-no" class="btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content modal-content--sm modal-content--center">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Message Sent!</h2>
+            <p class="modal-sub">Thank you for being interested in me.<br>I'll reach out soon 🙏</p>
+            <button id="success-close" class="btn-primary">Done</button>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="admin-modal" class="modal hidden">
+        <div class="modal-content modal-content--sm">
+            <span id="close-admin-modal" class="close-modal"><i class="fas fa-times"></i></span>
+            <h2><i class="fas fa-shield-alt"></i> Admin Login</h2>
+            <p class="modal-sub">Restricted access only.</p>
+            <form id="admin-form">
+                <label for="admin-user">Username</label>
+                <input type="text" id="admin-user" placeholder="Username" autocomplete="off" required>
+                <label for="admin-pass">Password</label>
+                <input type="password" id="admin-pass" placeholder="Password" required>
+                <p id="admin-error" class="admin-error hidden">Invalid credentials. Try again.</p>
+                <button type="submit" class="btn-primary">Login <i class="fas fa-sign-in-alt"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD MODAL -->
+    <div id="admin-dashboard" class="modal hidden">
+        <div class="modal-content modal-content--wide">
+            <span id="close-dashboard" class="close-modal"><i class="fas fa-times"></i></span>
+            <div class="dashboard-header">
+                <h2><i class="fas fa-bell"></i> Message Inbox</h2>
+                <button id="admin-logout" class="btn-cancel">Logout</button>
+            </div>
+            <p class="modal-sub">Messages sent through your portfolio.</p>
+            <div id="messages-list" class="messages-list">
+                <p class="no-messages">No messages yet.</p>
+            </div>
         </div>
     </div>
 
@@ -108,7 +163,7 @@
                         </div>
                         <div class="card-back">
                             <i class="fas fa-comments card-back-icon"></i>
-                            <p>Real‑time team messaging and communication platform.</p>
+                            <p>Real-time team messaging and communication platform.</p>
                         </div>
                     </div>
                 </div>
@@ -202,7 +257,7 @@
                     <div class="project-card__body">
                         <span class="project-tag">React · Node · MongoDB</span>
                         <h3>Task Tracker</h3>
-                        <p>Full‑stack task manager with React front‑end, Node/Express API and MongoDB.</p>
+                        <p>Full-stack task manager with React front-end, Node/Express API and MongoDB.</p>
                     </div>
                 </article>
 
@@ -217,7 +272,7 @@
                     <div class="project-card__body">
                         <span class="project-tag">Vue · OpenWeatherMap API</span>
                         <h3>Weather Dashboard</h3>
-                        <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5‑day forecast.</p>
+                        <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5-day forecast.</p>
                     </div>
                 </article>
 
