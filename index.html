@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ==================== META ==================== -->
+    <!-- =============== META =============== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brix Lubrido – Front‑End Developer</title>
 
-    <!-- ==================== FONTS ==================== -->
+    <!-- =============== FONTS =============== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- ==================== FONT AWESOME ==================== -->
+    <!-- =============== FONT AWESOME =============== -->
     <!-- Replace “yourkitid” with a free Font Awesome kit ID, or uncomment the CDN line below -->
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
 
-    <!-- ==================== STYLES ==================== -->
+    <!-- =============== STYLES =============== -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -39,16 +39,15 @@
 
     <!-- ==================== HERO (video background) ==================== -->
     <section id="hero" class="hero">
-        <!-- Video background – place your video file as assets/hero-bg.mp4 -->
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="assets/hero-bg.mp4" type="video/mp4">
-            <!-- fallback image if the video fails to load -->
+            <!-- fallback image in case the video cannot play -->
             <img src="assets/hero-fallback.jpg" alt="Hero fallback image">
         </video>
 
         <div class="container hero__container">
             <h1>Hello, I’m <span>Brix Lubrido</span></h1>
-            <!-- Tagline removed as requested -->
+            <!-- Tagline removed per request -->
             <button id="cta-btn" class="btn-primary">Get in Touch</button>
         </div>
     </section>
@@ -72,10 +71,10 @@
         </div>
     </div>
 
-    <!-- ==================== ABOUT ==================== -->
+    <!-- ==================== ABOUT (boxed card) ==================== -->
     <section id="about" class="about">
         <div class="container about__container">
-            <!-- Portrait – the same picture used for the hero background -->
+            <!-- Portrait – same picture used for the hero -->
             <img src="assets/brbbbbb.jpg"
                  alt="Portrait of Brix Lubrido"
                  class="about__img">
@@ -87,7 +86,7 @@
                     responsive web applications using React, Vue and modern CSS. I love turning
                     complex UI challenges into clean, performant code.
                 </p>
-                <!-- New resume file name -->
+                <!-- Updated resume file name -->
                 <a href="assets/Brix%20biodata.pdf"
                    class="btn-secondary"
                    download>Download CV</a>
@@ -224,21 +223,13 @@
             <h2>Contact Me</h2>
 
             <div class="contact__grid">
-                <!-- Direct contact info -->
+                <!-- Direct contact info (form removed) -->
                 <div class="contact__info">
                     <p><i class="fas fa-envelope"></i> <a href="mailto:brixlubrido18@gmail.com">brixlubrido18@gmail.com</a></p>
                     <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/brix-lubrido-999a40400/" target="_blank">LinkedIn</a></p>
                     <p><i class="fab fa-github"></i> <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
                     <p><i class="fas fa-phone"></i> +639502200708</p>
                 </div>
-
-                <!-- Existing contact form (you can keep it or remove it) -->
-                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="contact__form">
-                    <input type="text" name="name" placeholder="Your name" required>
-                    <input type="email" name="_replyto" placeholder="Your email" required>
-                    <textarea name="message" rows="4" placeholder="Your message…" required></textarea>
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
             </div>
         </div>
     </section>
