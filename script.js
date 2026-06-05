@@ -1,12 +1,5 @@
 /* -------------------------------------------------------------
-   script.js
-   1. Theme toggle
-   2. Footer year
-   3. Flip cards
-   4. Contact modal flow: form → confirm → success
-   5. Messages stored in localStorage
-   6. Admin login / dashboard / inbox
-   7. Canvas hero background
+   script.js — fixed admin login + editable about sections
    ------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -41,7 +34,66 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal(id)  { document.getElementById(id)?.classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id)?.classList.add('hidden'); }
 
-    /* ── 4 & 5. Contact form flow ─────────────────────────────── */
+    function escHtml(str) {
+        return String(str)
+            .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    /* ── 4. Load saved About content ─────────────────────────── */
+    function loadAboutContent() {
+        const p1El = document.getElementById('about-p1');
+        const p2El = document.getElementById('about-p2');
+        const savedP1 = localStorage.getItem('about_p1');
+        const savedP2 = localStorage.getItem('about_p2');
+        if (savedP1 && p1El) p1El.textContent = savedP1;
+        if (savedP2 && p2El) p2El.textContent = savedP2;
+    }
+    loadAboutContent();
+
+    /* ── 5. Load saved Work Experience ───────────────────────── */
+    const DEFAULT_EXP = [
+        {
+            icon: 'fas fa-briefcase',
+            title: 'HR Associate',
+            company: 'Sample Company',
+            date: '2022 – Present',
+            desc: 'Managed employee records, onboarding processes, and HR documentation.'
+        }
+    ];
+
+    function getExperiences() {
+        try {
+            const saved = localStorage.getItem('portfolio_exp');
+            return saved ? JSON.parse(saved) : DEFAULT_EXP;
+        } catch { return DEFAULT_EXP; }
+    }
+
+    function renderExperienceList() {
+        const list = document.getElementById('experience-list');
+        if (!list) return;
+        const exps = getExperiences();
+        if (exps.length === 0) {
+            list.innerHTML = '<p class="exp-empty">No experience entries yet.</p>';
+            return;
+        }
+        list.innerHTML = exps.map((e, i) => `
+            <div class="exp-item" style="animation-delay:${i * 0.1}s">
+                <div class="exp-dot"><i class="${escHtml(e.icon || 'fas fa-briefcase')}"></i></div>
+                <div class="exp-body">
+                    <div class="exp-header">
+                        <span class="exp-title">${escHtml(e.title)}</span>
+                        <span class="exp-date">${escHtml(e.date)}</span>
+                    </div>
+                    <div class="exp-company">${escHtml(e.company)}</div>
+                    <p class="exp-desc">${escHtml(e.desc)}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+    renderExperienceList();
+
+    /* ── 6. Contact form flow ─────────────────────────────────── */
     const ctaBtn      = document.getElementById('cta-btn');
     const ctaForm     = document.getElementById('cta-form');
     let pendingName   = '';
@@ -81,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.id === 'success-modal') closeModal('success-modal');
     });
 
-    /* ── message storage ──────────────────────────────────────── */
+    /* ── 7. Message storage ───────────────────────────────────── */
     function getMessages() {
         try { return JSON.parse(localStorage.getItem('portfolio_messages') || '[]'); }
         catch { return []; }
@@ -107,28 +159,23 @@ document.addEventListener('DOMContentLoaded', () => {
             badge.style.display = 'none';
         }
     }
-
     updateAdminBadge();
 
-    /* ── 6. Admin login ───────────────────────────────────────── */
+    /* ── 8. Admin login ───────────────────────────────────────── */
     const ADMIN_USER = 'brix2016';
     const ADMIN_PASS = 'Hesoyam 123';
     let adminLoggedIn = false;
 
-    // Inject badge span into admin button
     const adminNavBtn = document.getElementById('admin-login-btn');
-    if (adminNavBtn) {
-        const badge = document.createElement('span');
-        badge.id = 'admin-badge';
-        adminNavBtn.appendChild(badge);
-        updateAdminBadge();
-    }
 
     adminNavBtn?.addEventListener('click', () => {
         if (adminLoggedIn) {
-            renderMessages();
-            openModal('admin-dashboard');
+            openDashboard();
         } else {
+            // Clear fields and error on open
+            document.getElementById('admin-user').value = '';
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('admin-error').classList.add('hidden');
             openModal('admin-modal');
         }
     });
@@ -138,22 +185,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.id === 'admin-modal') closeModal('admin-modal');
     });
 
-    document.getElementById('admin-form')?.addEventListener('submit', e => {
-        e.preventDefault();
-        const u = document.getElementById('admin-user').value;
+    /* ── FIX: use click on submit button, not form submit ── */
+    document.getElementById('admin-submit')?.addEventListener('click', () => {
+        const u = document.getElementById('admin-user').value.trim();
         const p = document.getElementById('admin-pass').value;
         const errEl = document.getElementById('admin-error');
 
         if (u === ADMIN_USER && p === ADMIN_PASS) {
             adminLoggedIn = true;
             errEl.classList.add('hidden');
-            document.getElementById('admin-form').reset();
             closeModal('admin-modal');
-            renderMessages();
-            openModal('admin-dashboard');
+            openDashboard();
         } else {
             errEl.classList.remove('hidden');
         }
+    });
+
+    // Also allow Enter key in password field
+    document.getElementById('admin-pass')?.addEventListener('keydown', e => {
+        if (e.key === 'Enter') document.getElementById('admin-submit')?.click();
     });
 
     document.getElementById('close-dashboard')?.addEventListener('click', () => closeModal('admin-dashboard'));
@@ -166,10 +216,33 @@ document.addEventListener('DOMContentLoaded', () => {
         closeModal('admin-dashboard');
     });
 
+    function openDashboard() {
+        renderMessages();
+        populateAboutEditor();
+        renderExpEditor();
+        // activate inbox tab by default
+        switchTab('inbox');
+        openModal('admin-dashboard');
+    }
+
+    /* ── 9. Dashboard tabs ────────────────────────────────────── */
+    document.querySelectorAll('.dash-tab').forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
+
+    function switchTab(name) {
+        document.querySelectorAll('.dash-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+        document.querySelectorAll('.dash-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById(`tab-${name}`)?.classList.remove('hidden');
+    }
+
+    /* ── 10. Render inbox ─────────────────────────────────────── */
     function renderMessages() {
         const list = document.getElementById('messages-list');
+        const countEl = document.getElementById('inbox-count');
         if (!list) return;
         const msgs = getMessages();
+        if (countEl) countEl.textContent = msgs.length || '';
         if (msgs.length === 0) {
             list.innerHTML = '<p class="no-messages">No messages yet.</p>';
             return;
@@ -188,13 +261,83 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    function escHtml(str) {
-        return String(str)
-            .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-            .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    /* ── 11. Edit About tab ───────────────────────────────────── */
+    function populateAboutEditor() {
+        const p1 = document.getElementById('edit-about-p1');
+        const p2 = document.getElementById('edit-about-p2');
+        if (p1) p1.value = localStorage.getItem('about_p1') || document.getElementById('about-p1')?.textContent || '';
+        if (p2) p2.value = localStorage.getItem('about_p2') || document.getElementById('about-p2')?.textContent || '';
     }
 
-    /* ── 7. Canvas hero background ───────────────────────────── */
+    document.getElementById('save-about')?.addEventListener('click', () => {
+        const p1Val = document.getElementById('edit-about-p1').value.trim();
+        const p2Val = document.getElementById('edit-about-p2').value.trim();
+        localStorage.setItem('about_p1', p1Val);
+        localStorage.setItem('about_p2', p2Val);
+        const p1El = document.getElementById('about-p1');
+        const p2El = document.getElementById('about-p2');
+        if (p1El) p1El.textContent = p1Val;
+        if (p2El) p2El.textContent = p2Val;
+        const saved = document.getElementById('about-saved');
+        saved.classList.remove('hidden');
+        setTimeout(() => saved.classList.add('hidden'), 2500);
+    });
+
+    /* ── 12. Edit Experience tab ──────────────────────────────── */
+    function renderExpEditor() {
+        const container = document.getElementById('exp-editor');
+        if (!container) return;
+        const exps = getExperiences();
+        container.innerHTML = exps.map((e, i) => `
+            <div class="exp-editor-row" data-index="${i}">
+                <button class="exp-row-del" data-index="${i}"><i class="fas fa-trash"></i> Remove</button>
+                <div class="exp-row-grid">
+                    <input type="text" placeholder="Job Title" class="exp-field-title" value="${escHtml(e.title)}">
+                    <input type="text" placeholder="Company" class="exp-field-company" value="${escHtml(e.company)}">
+                </div>
+                <input type="text" placeholder="Date (e.g. 2022 – Present)" class="exp-field-date" value="${escHtml(e.date)}">
+                <textarea rows="2" placeholder="Description" class="exp-field-desc">${escHtml(e.desc)}</textarea>
+            </div>
+        `).join('');
+
+        container.querySelectorAll('.exp-row-del').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const exps = getExperiences();
+                exps.splice(parseInt(btn.dataset.index), 1);
+                localStorage.setItem('portfolio_exp', JSON.stringify(exps));
+                renderExpEditor();
+                renderExperienceList();
+            });
+        });
+    }
+
+    document.getElementById('add-exp')?.addEventListener('click', () => {
+        const exps = getExperiences();
+        exps.push({ icon: 'fas fa-briefcase', title: '', company: '', date: '', desc: '' });
+        localStorage.setItem('portfolio_exp', JSON.stringify(exps));
+        renderExpEditor();
+    });
+
+    document.getElementById('save-exp')?.addEventListener('click', () => {
+        const rows = document.querySelectorAll('.exp-editor-row');
+        const updated = [];
+        rows.forEach(row => {
+            updated.push({
+                icon: 'fas fa-briefcase',
+                title:   row.querySelector('.exp-field-title')?.value.trim() || '',
+                company: row.querySelector('.exp-field-company')?.value.trim() || '',
+                date:    row.querySelector('.exp-field-date')?.value.trim() || '',
+                desc:    row.querySelector('.exp-field-desc')?.value.trim() || ''
+            });
+        });
+        localStorage.setItem('portfolio_exp', JSON.stringify(updated));
+        renderExperienceList();
+        const saved = document.getElementById('exp-saved');
+        saved.classList.remove('hidden');
+        setTimeout(() => saved.classList.add('hidden'), 2500);
+    });
+
+    /* ── 13. Canvas hero background ──────────────────────────── */
     const canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
