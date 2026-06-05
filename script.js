@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------
-   script.js — fixed admin login + editable about sections
+   script.js — now without admin login / dashboard
    ------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    /* ── 4. Load saved About content ─────────────────────────── */
+    /* ── 4. Load saved About content (editable via localStorage) ── */
     function loadAboutContent() {
         const p1El = document.getElementById('about-p1');
         const p2El = document.getElementById('about-p2');
@@ -51,56 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loadAboutContent();
 
-    /* ── 5. Load saved Work Experience ───────────────────────── */
-    const DEFAULT_EXP = [
-        {
-            icon: 'fas fa-briefcase',
-            title: 'HR Associate',
-            company: 'Sample Company',
-            date: '2022 – Present',
-            desc: 'Managed employee records, onboarding processes, and HR documentation.'
-        }
-    ];
-
-    function getExperiences() {
-        try {
-            const saved = localStorage.getItem('portfolio_exp');
-            return saved ? JSON.parse(saved) : DEFAULT_EXP;
-        } catch { return DEFAULT_EXP; }
-    }
-
-    function renderExperienceList() {
-        const list = document.getElementById('experience-list');
-        if (!list) return;
-        const exps = getExperiences();
-        if (exps.length === 0) {
-            list.innerHTML = '<p class="exp-empty">No experience entries yet.</p>';
-            return;
-        }
-        list.innerHTML = exps.map((e, i) => `
-            <div class="exp-item" style="animation-delay:${i * 0.1}s">
-                <div class="exp-dot"><i class="${escHtml(e.icon || 'fas fa-briefcase')}"></i></div>
-                <div class="exp-body">
-                    <div class="exp-header">
-                        <span class="exp-title">${escHtml(e.title)}</span>
-                        <span class="exp-date">${escHtml(e.date)}</span>
-                    </div>
-                    <div class="exp-company">${escHtml(e.company)}</div>
-                    <p class="exp-desc">${escHtml(e.desc)}</p>
-                </div>
-            </div>
-        `).join('');
-    }
-    // **NOTE:** We *do not* call renderExperienceList() here because
-    // the experience section is now static HTML.
-    // renderExperienceList();
-
-    /* ── 6. Contact form flow ─────────────────────────────────── */
-    const ctaBtn      = document.getElementById('cta-btn');
-    const ctaForm     = document.getElementById('cta-form');
-    let pendingName   = '';
-    let pendingEmail  = '';
-    let pendingMsg    = '';
+    /* ── 5. Contact form flow (with basic validation) ──────── */
+    const ctaBtn  = document.getElementById('cta-btn');
+    const ctaForm = document.getElementById('cta-form');
+    let pendingName = '';
+    let pendingEmail = '';
+    let pendingMsg = '';
 
     ctaBtn?.addEventListener('click', () => openModal('cta-modal'));
     document.getElementById('close-modal')?.addEventListener('click', () => closeModal('cta-modal'));
@@ -110,9 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctaForm?.addEventListener('submit', e => {
         e.preventDefault();
-        pendingName  = document.getElementById('cta-name').value.trim();
-        pendingEmail = document.getElementById('cta-email').value.trim();
-        pendingMsg   = document.getElementById('cta-message').value.trim();
+        const name  = document.getElementById('cta-name').value.trim();
+        const email = document.getElementById('cta-email').value.trim();
+        const msg   = document.getElementById('cta-message').value.trim();
+
+        if (!name || !email || !msg) {
+            alert('Please fill out all fields before sending.');
+            return;
+        }
+
+        pendingName  = name;
+        pendingEmail = email;
+        pendingMsg   = msg;
+
         closeModal('cta-modal');
         openModal('confirm-modal');
     });
@@ -127,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaForm.reset();
         closeModal('confirm-modal');
         openModal('success-modal');
-        updateAdminBadge();
     });
 
     document.getElementById('success-close')?.addEventListener('click', () => closeModal('success-modal'));
@@ -135,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.id === 'success-modal') closeModal('success-modal');
     });
 
-    /* ── 7. Message storage ───────────────────────────────────── */
+    /* ── 6. Message storage (kept for possible future use) ──── */
     function getMessages() {
         try { return JSON.parse(localStorage.getItem('portfolio_messages') || '[]'); }
         catch { return []; }
@@ -144,204 +109,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveMessage(name, email, msg) {
         const msgs = getMessages();
         msgs.unshift({
-            name, email, msg,
-            time: new Date().toLocaleString('en-PH', { dateStyle: 'medium', timeStyle: 'short' })
+            name,
+            email,
+            msg,
+            time: new Date().toLocaleString('en-PH', {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            })
         });
         localStorage.setItem('portfolio_messages', JSON.stringify(msgs));
     }
 
-    function updateAdminBadge() {
-        const badge = document.getElementById('admin-badge');
-        if (!badge) return;
-        const count = getMessages().length;
-        if (count > 0) {
-            badge.textContent = count > 99 ? '99+' : count;
-            badge.style.display = 'block';
-        } else {
-            badge.style.display = 'none';
-        }
-    }
-    updateAdminBadge();
-
-    /* ── 8. Admin login ───────────────────────────────────────── */
-    const ADMIN_USER = 'brix2016';
-    const ADMIN_PASS = 'Hesoyam 123';
-    let adminLoggedIn = false;
-
-    const adminNavBtn = document.getElementById('admin-login-btn');
-
-    adminNavBtn?.addEventListener('click', () => {
-        if (adminLoggedIn) {
-            openDashboard();
-        } else {
-            // Clear fields and error on open
-            document.getElementById('admin-user').value = '';
-            document.getElementById('admin-pass').value = '';
-            document.getElementById('admin-error').classList.add('hidden');
-            openModal('admin-modal');
-        }
-    });
-
-    document.getElementById('close-admin-modal')?.addEventListener('click', () => closeModal('admin-modal'));
-    document.getElementById('admin-modal')?.addEventListener('click', e => {
-        if (e.target.id === 'admin-modal') closeModal('admin-modal');
-    });
-
-    /* ── FIX: use click on submit button, not form submit ── */
-    document.getElementById('admin-submit')?.addEventListener('click', () => {
-        const u = document.getElementById('admin-user').value.trim();
-        const p = document.getElementById('admin-pass').value;
-        const errEl = document.getElementById('admin-error');
-
-        if (u === ADMIN_USER && p === ADMIN_PASS) {
-            adminLoggedIn = true;
-            errEl.classList.add('hidden');
-            closeModal('admin-modal');
-            openDashboard();
-        } else {
-            errEl.classList.remove('hidden');
-        }
-    });
-
-    // Also allow Enter key in password field
-    document.getElementById('admin-pass')?.addEventListener('keydown', e => {
-        if (e.key === 'Enter') document.getElementById('admin-submit')?.click();
-    });
-
-    document.getElementById('close-dashboard')?.addEventListener('click', () => closeModal('admin-dashboard'));
-    document.getElementById('admin-dashboard')?.addEventListener('click', e => {
-        if (e.target.id === 'admin-dashboard') closeModal('admin-dashboard');
-    });
-
-    document.getElementById('admin-logout')?.addEventListener('click', () => {
-        adminLoggedIn = false;
-        closeModal('admin-dashboard');
-    });
-
-    function openDashboard() {
-        renderMessages();
-        populateAboutEditor();
-        renderExpEditor();
-        // activate inbox tab by default
-        switchTab('inbox');
-        openModal('admin-dashboard');
-    }
-
-    /* ── 9. Dashboard tabs ────────────────────────────────────── */
-    document.querySelectorAll('.dash-tab').forEach(tab => {
-        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-    });
-
-    function switchTab(name) {
-        document.querySelectorAll('.dash-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
-        document.querySelectorAll('.dash-panel').forEach(p => p.classList.add('hidden'));
-        document.getElementById(`tab-${name}`)?.classList.remove('hidden');
-    }
-
-    /* ── 10. Render inbox ─────────────────────────────────────── */
-    function renderMessages() {
-        const list = document.getElementById('messages-list');
-        const countEl = document.getElementById('inbox-count');
-        if (!list) return;
-        const msgs = getMessages();
-        if (countEl) countEl.textContent = msgs.length || '';
-        if (msgs.length === 0) {
-            list.innerHTML = '<p class="no-messages">No messages yet.</p>';
-            return;
-        }
-        list.innerHTML = msgs.map(m => `
-            <div class="message-item">
-                <div class="message-item__meta">
-                    <div>
-                        <div class="message-item__name">${escHtml(m.name)}</div>
-                        <div class="message-item__email">${escHtml(m.email)}</div>
-                    </div>
-                    <div class="message-item__time">${escHtml(m.time)}</div>
-                </div>
-                <div class="message-item__body">${escHtml(m.msg)}</div>
-            </div>
-        `).join('');
-    }
-
-    /* ── 11. Edit About tab ───────────────────────────────────── */
-    function populateAboutEditor() {
-        const p1 = document.getElementById('edit-about-p1');
-        const p2 = document.getElementById('edit-about-p2');
-        if (p1) p1.value = localStorage.getItem('about_p1') || document.getElementById('about-p1')?.textContent || '';
-        if (p2) p2.value = localStorage.getItem('about_p2') || document.getElementById('about-p2')?.textContent || '';
-    }
-
-    document.getElementById('save-about')?.addEventListener('click', () => {
-        const p1Val = document.getElementById('edit-about-p1').value.trim();
-        const p2Val = document.getElementById('edit-about-p2').value.trim();
-        localStorage.setItem('about_p1', p1Val);
-        localStorage.setItem('about_p2', p2Val);
-        const p1El = document.getElementById('about-p1');
-        const p2El = document.getElementById('about-p2');
-        if (p1El) p1El.textContent = p1Val;
-        if (p2El) p2El.textContent = p2Val;
-        const saved = document.getElementById('about-saved');
-        saved.classList.remove('hidden');
-        setTimeout(() => saved.classList.add('hidden'), 2500);
-    });
-
-    /* ── 12. Edit Experience tab ──────────────────────────────── */
-    function renderExpEditor() {
-        const container = document.getElementById('exp-editor');
-        if (!container) return;
-        const exps = getExperiences();
-        container.innerHTML = exps.map((e, i) => `
-            <div class="exp-editor-row" data-index="${i}">
-                <button class="exp-row-del" data-index="${i}"><i class="fas fa-trash"></i> Remove</button>
-                <div class="exp-row-grid">
-                    <input type="text" placeholder="Job Title" class="exp-field-title" value="${escHtml(e.title)}">
-                    <input type="text" placeholder="Company" class="exp-field-company" value="${escHtml(e.company)}">
-                </div>
-                <input type="text" placeholder="Date (e.g. 2022 – Present)" class="exp-field-date" value="${escHtml(e.date)}">
-                <textarea rows="2" placeholder="Description" class="exp-field-desc">${escHtml(e.desc)}</textarea>
-            </div>
-        `).join('');
-
-        container.querySelectorAll('.exp-row-del').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const exps = getExperiences();
-                exps.splice(parseInt(btn.dataset.index), 1);
-                localStorage.setItem('portfolio_exp', JSON.stringify(exps));
-                renderExpEditor();
-                renderExperienceList();
-            });
-        });
-    }
-
-    document.getElementById('add-exp')?.addEventListener('click', () => {
-        const exps = getExperiences();
-        exps.push({ icon: 'fas fa-briefcase', title: '', company: '', date: '', desc: '' });
-        localStorage.setItem('portfolio_exp', JSON.stringify(exps));
-        renderExpEditor();
-    });
-
-    document.getElementById('save-exp')?.addEventListener('click', () => {
-        const rows = document.querySelectorAll('.exp-editor-row');
-        const updated = [];
-        rows.forEach(row => {
-            updated.push({
-                icon: 'fas fa-briefcase',
-                title:   row.querySelector('.exp-field-title')?.value.trim() || '',
-                company: row.querySelector('.exp-field-company')?.value.trim() || '',
-                date:    row.querySelector('.exp-field-date')?.value.trim() || '',
-                desc:    row.querySelector('.exp-field-desc')?.value.trim() || ''
-            });
-        });
-        localStorage.setItem('portfolio_exp', JSON.stringify(updated));
-        renderExperienceList();
-        const saved = document.getElementById('exp-saved');
-        saved.classList.remove('hidden');
-        setTimeout(() => saved.classList.add('hidden'), 2500);
-    });
-
-    /* ── 13. Canvas hero background ──────────────────────────── */
+    /* ── 7. Canvas hero background ──────────────────────────── */
     const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
+    if (!canvas) return;                // safety guard
     const ctx = canvas.getContext('2d');
 
     function getPalette() {
@@ -372,7 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
             this.color = [p.a, p.b, p.c][Math.floor(Math.random() * 3)];
         }
         update() {
-            this.x += this.vx; this.y += this.vy;
+            this.x += this.vx;
+            this.y += this.vy;
             if (this.y + this.r < -100) this.reset();
         }
         draw() {
@@ -388,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const orbs = Array.from({ length: 9 }, () => new Orb());
     const dots = Array.from({ length: 60 }, () => ({
-        x: Math.random() * 2000, y: Math.random() * 2000,
+        x: Math.random() * 2000,
+        y: Math.random() * 2000,
         r: .5 + Math.random() * 1.2,
         vx: (Math.random() - .5) * .2,
         vy: (Math.random() - .5) * .2,
