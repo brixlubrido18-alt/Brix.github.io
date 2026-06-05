@@ -2,8 +2,8 @@
    1️⃣  CSS VARIABLES (light & dark)
    ============================================================== */
 :root {
-    /* Light theme */
-    --bg: #fdfdfd;
+    /* Light theme – background switched to light gray */
+    --bg: #eaeaea;                /* page background */
     --text: #111;
     --primary: #0366d6;
     --secondary: #6c757d;
@@ -13,7 +13,7 @@
     --card-border: #e0e0e0;
 }
 
-/* Dark theme (toggled via JS) */
+/* Dark theme overrides – toggled by script.js */
 [data-theme="dark"] {
     --bg: #0d1117;
     --text: #c9d1d9;
@@ -112,7 +112,7 @@ p { margin-bottom: 1rem; }
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;               /* text stays white over the video */
+    color: #fff;               /* white text over the video */
 }
 .hero-video {
     position: absolute;
@@ -145,10 +145,11 @@ p { margin-bottom: 1rem; }
 .btn-secondary:hover { background: #fff; color: var(--primary); }
 
 /* ==============================================================
-   7️⃣  ABOUT
+   7️⃣  ABOUT (boxed card)
    ============================================================== */
 .about {
     padding: 4rem 0;
+    /* The page background is gray; give the About section its own white card */
     background: var(--bg);
 }
 .about__container {
@@ -156,6 +157,12 @@ p { margin-bottom: 1rem; }
     grid-template-columns: 1fr;
     gap: 2rem;
     align-items: center;
+}
+.about__box {
+    background: var(--card-bg);
+    border-radius: .8rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
 .about__img {
     width: 200px;
@@ -284,7 +291,7 @@ p { margin-bottom: 1rem; }
 .project-card__links a:hover { color: var(--accent); }
 
 /* ==============================================================
-   🔟  CONTACT
+   🔟  CONTACT (form removed)
    ============================================================== */
 .contact {
     padding: 4rem 0;
@@ -308,20 +315,6 @@ p { margin-bottom: 1rem; }
     width: 30px;
     color: var(--primary);
 }
-.contact__form {
-    display: flex;
-    flex-direction: column;
-}
-.contact__form input,
-.contact__form textarea {
-    padding: .75rem;
-    margin-bottom: .75rem;
-    border: 1px solid var(--card-border);
-    border-radius: .4rem;
-    background: var(--bg);
-    color: var(--text);
-}
-.contact__form button { align-self: flex-start; }
 
 /* ==============================================================
    1️⃣1️⃣  FOOTER
