@@ -608,3 +608,117 @@ em { font-style: italic; color: var(--accent2); }
 @media (max-width: 480px) {
     .nav__menu { display: none; }
 }
+
+/* ==============================================================
+   NAV RIGHT CLUSTER
+   ============================================================== */
+.nav__right { display: flex; align-items: center; gap: .6rem; }
+.btn-admin-nav {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: .35rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: .95rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-admin-nav:hover { border-color: #1a3a6b; color: #1a3a6b; }
+
+/* ==============================================================
+   MODAL VARIANTS
+   ============================================================== */
+.modal-content--sm { max-width: 380px; text-align: center; }
+.modal-content--center { display: flex; flex-direction: column; align-items: center; }
+.modal-content--wide { max-width: 680px; width: 92vw; }
+
+.modal-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+
+.btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .75rem 1.5rem;
+    border-radius: .4rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    color: var(--text-muted);
+    transition: all .2s;
+}
+.btn-cancel:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Success icon */
+.success-icon { font-size: 3.5rem; color: #2ecc71; margin-bottom: .75rem; }
+.success-icon i { animation: popIn .4s cubic-bezier(.4,2,.6,1) both; }
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* Admin error */
+.admin-error { color: var(--accent); font-size: .85rem; margin: -.25rem 0 .75rem; }
+
+/* ==============================================================
+   ADMIN DASHBOARD / MESSAGES
+   ============================================================== */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .25rem;
+    flex-wrap: wrap;
+    gap: .75rem;
+}
+.messages-list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: .9rem; max-height: 55vh; overflow-y: auto; }
+.no-messages { color: var(--text-muted); text-align: center; padding: 2rem 0; font-style: italic; }
+
+.message-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: .6rem;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    animation: fadeUp .3s ease both;
+}
+.message-item__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: .5rem;
+    margin-bottom: .5rem;
+    flex-wrap: wrap;
+}
+.message-item__name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+}
+.message-item__email { font-size: .82rem; color: var(--primary); }
+.message-item__time { font-size: .78rem; color: var(--text-muted); white-space: nowrap; }
+.message-item__body { font-size: .9rem; color: var(--text-muted); line-height: 1.55; }
+
+/* Notification badge on admin button */
+.btn-admin-nav { position: relative; }
+#admin-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent);
+    color: #fff;
+    font-size: .6rem;
+    font-weight: 700;
+    border-radius: 100px;
+    padding: 1px 5px;
+    min-width: 16px;
+    text-align: center;
+    display: none;
+}
