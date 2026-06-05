@@ -24,10 +24,7 @@
                 <a href="#contact">Contact</a>
             </nav>
             <div class="nav__right">
-                <button id="admin-login-btn" class="btn-admin-nav" title="Admin Login">
-                    <i class="fas fa-lock"></i>
-                    <span id="admin-badge"></span>
-                </button>
+                <!-- **Admin login button removed** -->
                 <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-sun"></i></button>
             </div>
         </div>
@@ -87,66 +84,9 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN LOGIN MODAL ========== -->
-    <div id="admin-modal" class="modal hidden">
-        <div class="modal-content modal-content--sm">
-            <span id="close-admin-modal" class="close-modal"><i class="fas fa-times"></i></span>
-            <h2><i class="fas fa-shield-alt"></i> Admin Login</h2>
-            <p class="modal-sub">Restricted access only.</p>
-            <div id="admin-error" class="admin-error hidden"><i class="fas fa-exclamation-circle"></i> Invalid credentials. Try again.</div>
-            <label for="admin-user">Username</label>
-            <input type="text" id="admin-user" placeholder="Username" autocomplete="off">
-            <label for="admin-pass">Password</label>
-            <input type="password" id="admin-pass" placeholder="Password">
-            <button id="admin-submit" class="btn-primary" style="width:100%;margin-top:.5rem">Login <i class="fas fa-sign-in-alt"></i></button>
-        </div>
-    </div>
+    <!-- **Admin login modal removed** -->
 
-    <!-- ========== ADMIN DASHBOARD ========== -->
-    <div id="admin-dashboard" class="modal hidden">
-        <div class="modal-content modal-content--wide">
-            <span id="close-dashboard" class="close-modal"><i class="fas fa-times"></i></span>
-            <div class="dashboard-header">
-                <h2><i class="fas fa-tachometer-alt"></i> Admin Panel</h2>
-                <button id="admin-logout" class="btn-cancel"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
-
-            <!-- TABS -->
-            <div class="dash-tabs">
-                <button class="dash-tab active" data-tab="inbox"><i class="fas fa-inbox"></i> Inbox <span id="inbox-count" class="tab-badge"></span></button>
-                <button class="dash-tab" data-tab="edit-about"><i class="fas fa-edit"></i> Edit About</button>
-                <button class="dash-tab" data-tab="edit-exp"><i class="fas fa-briefcase"></i> Edit Experience</button>
-            </div>
-
-            <!-- INBOX TAB -->
-            <div id="tab-inbox" class="dash-panel">
-                <p class="modal-sub">Messages sent through your portfolio contact form.</p>
-                <div id="messages-list" class="messages-list">
-                    <p class="no-messages">No messages yet.</p>
-                </div>
-            </div>
-
-            <!-- EDIT ABOUT TAB -->
-            <div id="tab-edit-about" class="dash-panel hidden">
-                <p class="modal-sub">Edit the two text blocks displayed in the About section (below the "Human Resources" heading).</p>
-                <label>Paragraph 1 <span style="color:var(--text-muted);font-weight:400;font-size:.8rem">— first block of text</span></label>
-                <textarea id="edit-about-p1" rows="3"></textarea>
-                <label>Paragraph 2 <span style="color:var(--text-muted);font-weight:400;font-size:.8rem">— second block of text</span></label>
-                <textarea id="edit-about-p2" rows="3"></textarea>
-                <button id="save-about" class="btn-primary" style="margin-top:.75rem">Save Changes <i class="fas fa-save"></i></button>
-                <span id="about-saved" class="save-confirm hidden"><i class="fas fa-check"></i> Saved!</span>
-            </div>
-
-            <!-- EDIT EXPERIENCE TAB -->
-            <div id="tab-edit-exp" class="dash-panel hidden">
-                <p class="modal-sub">Edit the Work Experience entries displayed on the page.</p>
-                <div id="exp-editor"></div>
-                <button id="add-exp" class="btn-cancel" style="margin-top:.75rem"><i class="fas fa-plus"></i> Add Entry</button>
-                <button id="save-exp" class="btn-primary" style="margin-top:.75rem;margin-left:.5rem">Save All <i class="fas fa-save"></i></button>
-                <span id="exp-saved" class="save-confirm hidden"><i class="fas fa-check"></i> Saved!</span>
-            </div>
-        </div>
-    </div>
+    <!-- **Admin dashboard removed** -->
 
     <!-- ABOUT -->
     <section id="about" class="about">
@@ -170,7 +110,39 @@
         <div class="container">
             <p class="section-label">My Journey</p>
             <h2>Work Experience</h2>
-            <div id="experience-list" class="experience__list"></div>
+            <div id="experience-list" class="experience__list">
+                <!-- Static experience entries (no longer editable) -->
+                <div class="exp-item">
+                    <div class="exp-dot"><i class="fas fa-briefcase"></i></div>
+                    <div class="exp-body">
+                        <div class="exp-header">
+                            <span class="exp-title">Human Resources</span>
+                            <span class="exp-date">2024–Present</span>
+                        </div>
+                        <div class="exp-company"></div>
+                        <p class="exp-desc">
+                            As an HR Support professional, consistently delivered excellent service by addressing employee concerns,
+                            maintaining accurate records, and supporting efficient HR operations with professionalism and strong communication.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-dot"><i class="fas fa-briefcase"></i></div>
+                    <div class="exp-body">
+                        <div class="exp-header">
+                            <span class="exp-title">Content Moderator (Team Captain)</span>
+                            <span class="exp-date">2019–2024</span>
+                        </div>
+                        <div class="exp-company"></div>
+                        <p class="exp-desc">
+                            As a Content Moderator, consistently delivered excellent output by ensuring accuracy,
+                            maintaining quality standards, and adhering to company policies and guidelines.
+                        </p>
+                    </div>
+                </div>
+                <!-- End of static entries -->
+            </div>
         </div>
     </section>
 
@@ -189,7 +161,7 @@
                         </div>
                         <div class="card-back">
                             <i class="fas fa-tasks card-back-icon"></i>
-                            <p>Project & task management tool for organising workflows and team collaboration.</p>
+                            <p>Project &amp; task management tool for organising workflows and team collaboration.</p>
                         </div>
                     </div>
                 </div>
@@ -215,7 +187,7 @@
                         </div>
                         <div class="card-back">
                             <i class="fab fa-google card-back-icon"></i>
-                            <p>Spreadsheets, Apps Script, Slides & Docs for productivity.</p>
+                            <p>Spreadsheets, Apps Script, Slides &amp; Docs for productivity.</p>
                         </div>
                     </div>
                 </div>
@@ -311,7 +283,7 @@
                     <div class="project-card__body">
                         <span class="project-tag">Vue · OpenWeatherMap API</span>
                         <h3>Weather Dashboard</h3>
-                        <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5-day forecast.</p>
+                        <p>Vue.js SPA that consumes the OpenWeatherMap API and shows a 5‑day forecast.</p>
                     </div>
                 </article>
 
